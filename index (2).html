@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VYCK - Acessórios</title>
+<meta name="description" content="Peças exclusivas em acessórios finos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+  /* ============================================
+     CONFIGURAÇÃO RÁPIDA — edite aqui
+     ============================================ */
+  :root{
+    --whatsapp-number: "5511999999999"; /* apenas para referência visual, o número real está no JS abaixo */
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  :root{
+    --bg: #15120f;
+    --surface: #1c1712;
+    --surface-hover: #221c15;
+    --gold: #707070;
+    --gold-bright: #a8a9ad;
+    --cream: #f0e8db;
+    --muted: #9c9186;
+    --hairline: #332c22;
+    --header-bg: rgba(21,18,15,0.92);
+    --img-bg: #2a2a2f;
+  }
+
+  html[data-theme="light"]{
+    --bg: #faf6ee;
+    --surface: #f1e9d8;
+    --surface-hover: #ebe0c9;
+    --gold: #707070;
+    --gold-bright: #909090;
+    --cream: #2a2318;
+    --muted: #756a56;
+    --hairline: #ddceac;
+    --header-bg: rgba(250,246,238,0.92);
+    --img-bg: #e8e8eb;
+  }
+
+  html{ transition: background .3s ease; }
+
+  body{
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+
+  a { color: inherit; text-decoration: none; }
+
+  .diamond{
+    display:inline-block;
+    width:6px; height:6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  /* ---------- topo ---------- */
+  header{
+    position: fixed;
+    top:0; left:0; right:0;
+    z-index: 100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 24px;
+    padding: 22px 6vw;
+    background: var(--header-bg);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--hairline);
+    transition: padding .3s ease;
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cream);
+    flex-shrink: 0;
+  }
+  .logo em{ font-style:normal; color: var(--gold); }
+
+  nav{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .header-controls{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    flex-shrink:0;
+  }
+  .nav-sep{
+    width:1px; height:16px;
+    background: var(--hairline);
+    margin: 0 10px;
+    flex-shrink:0;
+  }
+  .nav-filter-btn{
+    padding: 7px 16px;
+    border: 1px solid transparent;
+    background: transparent;
+    font-family: 'Jost', sans-serif;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .25s ease;
+  }
+  .nav-filter-btn:hover{ color: var(--gold-bright); }
+  .nav-filter-btn.active{
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  nav a{
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    transition: color .25s ease;
+  }
+  nav a:hover{ color: var(--gold); }
+
+  .menu-toggle{
+    display:none;
+    background:none;
+    border: 1px solid var(--hairline);
+    width: 40px; height: 40px;
+    align-items:center;
+    justify-content:center;
+    color: var(--cream);
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .menu-toggle svg{ width:18px; height:18px; }
+
+  .theme-toggle{
+    background:none;
+    border: 1px solid var(--hairline);
+    width: 40px; height: 40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: var(--gold);
+    cursor:pointer;
+    flex-shrink:0;
+    transition: border-color .25s ease;
+  }
+  .theme-toggle:hover{ border-color: var(--gold); }
+  .theme-toggle svg{ width:18px; height:18px; }
+
+  @media (max-width: 860px){
+    nav{
+      display:none;
+      position:absolute;
+      top: 100%; left:0; right:0;
+      flex-direction: column;
+      align-items: stretch;
+      background: var(--bg);
+      border-bottom: 1px solid var(--hairline);
+      padding: 18px 6vw 26px;
+      gap: 4px;
+    }
+    nav.open{ display:flex; }
+    .nav-sep{ display:none; }
+    .nav-filter-btn, nav a{
+      width:100%;
+      text-align:left;
+      padding: 12px 4px;
+      border-bottom: 1px solid var(--hairline);
+      border-left:none; border-top:none; border-right:none;
+    }
+    .nav-filter-btn.active{ border-bottom-color: var(--gold); }
+    .menu-toggle{ display:flex; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height: 92vh;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 0 6vw;
+    position: relative;
+  }
+  .hero .eyebrow{
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+  }
+  .hero h1{
+    font-size: clamp(42px, 8vw, 84px);
+    line-height: 1.05;
+    max-width: 900px;
+    color: var(--cream);
+    letter-spacing: 0.5px;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero p{
+    max-width: 480px;
+    margin: 26px 0 40px;
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 14px;
+    width: 100%;
+    max-width: 220px;
+  }
+  .divider .line{ flex:1; height:1px; background: var(--hairline); }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    padding: 15px 34px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all .3s ease;
+  }
+  .btn:hover{
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  /* ---------- coleção ---------- */
+  section{ padding: 110px 6vw; }
+  .section-head{
+    text-align:center;
+    margin-bottom: 70px;
+  }
+  .section-head .eyebrow{
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .section-head h2{
+    font-size: clamp(30px, 4vw, 46px);
+    color: var(--cream);
+  }
+
+  .filter-bar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 1240px;
+    margin: 0 auto 56px;
+  }
+  .filter-btn{
+    padding: 10px 22px;
+    border: 1px solid var(--hairline);
+    color: var(--muted);
+    font-family: 'Jost', sans-serif;
+    background: transparent;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .25s ease;
+  }
+  .filter-btn:hover{
+    border-color: var(--gold);
+    color: var(--gold-bright);
+  }
+  .filter-btn.active{
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--bg);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 44px 32px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .empty-msg{
+    text-align:center;
+    color: var(--muted);
+    font-size: 15px;
+    grid-column: 1 / -1;
+    padding: 40px 0;
+  }
+
+  .card{
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    transition: border-color .35s ease, transform .35s ease;
+  }
+  .card:hover{
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+  .card .img-wrap{
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--img-bg);
+  }
+  .card img{
+    width:100%; height:100%;
+    object-fit: cover;
+    display:block;
+    transition: transform .6s ease;
+    filter: saturate(0.92);
+  }
+  .card:hover img{ transform: scale(1.06); }
+
+  .card .info{ padding: 22px 24px 26px; }
+  .card .tag{
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .card h3{
+    font-size: 24px;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .card .price{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .card .contact-link{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--cream);
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 4px;
+    transition: color .25s ease, border-color .25s ease;
+  }
+  .card .contact-link:hover{
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+  .card .contact-link svg{ width:14px; height:14px; transition: transform .25s ease; }
+  .card .contact-link:hover svg{ transform: translateX(4px); }
+
+  /* ---------- sobre ---------- */
+  .about{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items:center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .about .img-wrap{
+    aspect-ratio: 4/5;
+    overflow:hidden;
+  }
+  .about img{ width:100%; height:100%; object-fit:cover; filter: saturate(0.9); }
+  .about .eyebrow{
+    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 18px;
+  }
+  .about h2{ font-size: 36px; margin-bottom: 20px; color: var(--cream); }
+  .about p{ color: var(--muted); margin-bottom: 16px; font-size: 15px; }
+  @media (max-width: 780px){
+    .about{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- contato ---------- */
+  .contact{
+    text-align:center;
+    background: var(--surface);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .contact h2{ font-size: clamp(30px,4vw,44px); margin-bottom: 16px; color: var(--cream); }
+  .contact p{ color: var(--muted); max-width: 460px; margin: 0 auto 40px; }
+  .contact-buttons{
+    display:flex;
+    gap: 18px;
+    justify-content:center;
+    flex-wrap: wrap;
+  }
+  .btn-solid{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    padding: 15px 32px;
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: background .3s ease;
+  }
+  .btn-solid:hover{ background: var(--gold-bright); }
+  .btn-outline{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    padding: 15px 32px;
+    border: 1px solid var(--hairline);
+    color: var(--cream);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: border-color .3s ease, color .3s ease;
+  }
+  .btn-outline:hover{ border-color: var(--gold); color: var(--gold); }
+  .contact-buttons svg{ width:18px; height:18px; }
+
+  /* ---------- rodapé ---------- */
+  footer{
+    text-align:center;
+    padding: 46px 6vw;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  footer .logo{ margin-bottom: 14px; }
+
+  /* ---------- botão flutuante whatsapp ---------- */
+  .float-wa{
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    width: 58px; height: 58px;
+    background: var(--gold);
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index: 200;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    transition: background .3s ease, transform .3s ease;
+  }
+  .float-wa:hover{ background: var(--gold-bright); transform: scale(1.06); }
+  .float-wa svg{ width:28px; height:28px; fill: var(--bg); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">VYC<em>K</em></div>
+  <nav id="main-nav">
+    <span id="header-filters"></span>
+    <span class="nav-sep"></span>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <div class="header-controls">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro">
+      <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+    </button>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Acessórios em pequenas edições</div>
+  <h1>Peças que carregam <em>história</em>, não apenas brilho</h1>
+  <p>Cada acessório é selecionado a dedo — colares, brincos e anéis para quem escolhe suas peças com intenção.</p>
+  <div class="divider" style="margin-bottom: 34px;">
+    <div class="line"></div><span class="diamond"></span><div class="line"></div>
+  </div>
+  <a href="#colecao" class="btn">Ver coleção</a>
+</section>
+
+<section id="colecao">
+  <div class="section-head">
+    <div class="eyebrow"><span class="diamond"></span>Coleção atual<span class="diamond"></span></div>
+    <h2>Peças em destaque</h2>
+  </div>
+
+  <div class="filter-bar" id="filter-bar"></div>
+
+  <div class="grid" id="product-grid"></div>
+</section>
+
+<section id="sobre">
+  <div class="about">
+    <div class="img-wrap">
+      <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80" alt="Detalhe de acessório dourado">
+    </div>
+    <div>
+      <div class="eyebrow">Nossa história</div>
+      <h2>Feito para durar, escolhido com cuidado</h2>
+      <p>A VYCK nasceu da vontade de reunir acessórios que não seguem tendência — seguem gosto. Cada peça passa por uma curadoria cuidadosa antes de chegar até você.</p>
+      <p>Trabalhamos com produção em pequena escala, o que significa peças exclusivas e atendimento próximo, direto com quem escolhe cada detalhe.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="eyebrow" style="color:var(--gold); letter-spacing:4px; font-size:12px; text-transform:uppercase; margin-bottom:18px;">Fale com a gente</div>
+  <h2>Gostou de alguma peça?</h2>
+  <p>Fale direto comigo pelo WhatsApp ou acompanhe as novidades no Instagram — publico peças novas toda semana.</p>
+  <div class="contact-buttons">
+    <a href="#" id="wa-contact-btn" class="btn-solid" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.85 9.85 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67c2.24 0 4.34.87 5.92 2.45a8.23 8.23 0 0 1 2.42 5.85c0 4.55-3.7 8.25-8.29 8.25a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.55 3.7-8.25 8.24-8.25M8.53 7.33c-.16 0-.43.06-.65.31c-.22.24-.86.84-.86 2.05c0 1.21.88 2.38 1 2.55c.12.16 1.7 2.72 4.2 3.71c2.08.83 2.5.66 2.95.62c.45-.04 1.45-.59 1.65-1.16c.2-.57.2-1.06.14-1.16c-.06-.1-.22-.16-.45-.28c-.24-.12-1.45-.72-1.68-.8c-.22-.08-.39-.12-.55.12c-.16.24-.63.8-.78.96c-.14.16-.29.18-.53.06c-.24-.12-1.02-.38-1.94-1.2c-.72-.64-1.2-1.44-1.35-1.68c-.14-.24-.02-.37.11-.49c.11-.11.24-.29.37-.43c.12-.15.16-.25.24-.41c.08-.17.04-.31-.02-.43c-.06-.12-.55-1.36-.77-1.85c-.19-.46-.4-.42-.55-.43c-.14 0-.31 0-.48 0z"/></svg>
+      Falar no WhatsApp
+    </a>
+    <a href="#" id="ig-contact-btn" class="btn-outline" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.02-3.58.07-4.85c.15-3.23 1.67-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07c-4.35.2-6.78 2.62-6.98 6.98C0 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.35 2.62 6.78 6.98 6.98C8.33 24 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.4a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg>
+      Ver Instagram
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">VYC<em>K</em></div>
+  <p>&copy; <span id="year"></span> VYCK Acessórios. Todas as peças sujeitas a disponibilidade.</p>
+</footer>
+
+<a href="#" id="wa-float-btn" class="float-wa" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.85 9.85 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67c2.24 0 4.34.87 5.92 2.45a8.23 8.23 0 0 1 2.42 5.85c0 4.55-3.7 8.25-8.29 8.25a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.55 3.7-8.25 8.24-8.25M8.53 7.33c-.16 0-.43.06-.65.31c-.22.24-.86.84-.86 2.05c0 1.21.88 2.38 1 2.55c.12.16 1.7 2.72 4.2 3.71c2.08.83 2.5.66 2.95.62c.45-.04 1.45-.59 1.65-1.16c.2-.57.2-1.06.14-1.16c-.06-.1-.22-.16-.45-.28c-.24-.12-1.45-.72-1.68-.8c-.22-.08-.39-.12-.55.12c-.16.24-.63.8-.78.96c-.14.16-.29.18-.53.06c-.24-.12-1.02-.38-1.94-1.2c-.72-.64-1.2-1.44-1.35-1.68c-.14-.24-.02-.37.11-.49c.11-.11.24-.29.37-.43c.12-.15.16-.25.24-.41c.08-.17.04-.31-.02-.43c-.06-.12-.55-1.36-.77-1.85c-.19-.46-.4-.42-.55-.43c-.14 0-.31 0-.48 0z"/></svg>
+</a>
+
+<script>
+
+  /* ============================================================
+     ÁREA DE EDIÇÃO — troque os valores abaixo pelos seus dados
+     ============================================================ */
+
+  // Seu número de WhatsApp com código do país, sem espaços/símbolos
+  // Exemplo: 55 (Brasil) + DDD + número => "553198656613"
+  const WHATSAPP_NUMBER = "553198656613";
+
+  // Seu usuário do Instagram (sem o @)
+  const INSTAGRAM_USER = "_v.yck";
+
+  // Suas peças. Adicione, remova ou edite os itens abaixo.
+  // "imagem" pode ser um link de foto sua (ex: hospedada no imgur, ou dentro
+  // da pasta do site, tipo "imagens/colar-1.jpg")
+  const PRODUCTS = [
+    {
+      nome: "Colar Rio Dourado",
+      categoria: "Colares",
+      preco: "R$ 189,00",
+      destaque: true,
+      imagem: "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=600&q=80"
+    },
+    {
+      nome: "Brinco Gota Cristal",
+      categoria: "Brincos",
+      preco: "R$ 129,00",
+      destaque: true,
+      imagem: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80"
+    },
+    {
+      nome: "Anel Solitário Fino",
+      categoria: "Anéis",
+      preco: "R$ 149,00",
+      destaque: true,
+      imagem: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80"
+    },
+    {
+      nome: "Pulseira Elos Duplos",
+      categoria: "Pulseiras",
+      preco: "R$ 159,00",
+      destaque: false,
+      imagem: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80"
+    },
+    {
+      nome: "Colar Camadas Finas",
+      categoria: "Colares",
+      preco: "R$ 219,00",
+      destaque: false,
+      imagem: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80"
+    },
+    {
+      nome: "Brinco Argola Clássica",
+      categoria: "Brincos",
+      preco: "R$ 99,00",
+      destaque: false,
+      imagem: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&q=80"
+    }
+  ];
+
+  /* ============================================================
+     Não é necessário editar nada abaixo desta linha
+     ============================================================ */
+
+  function waLink(productName){
+    const msg = encodeURIComponent(`Olá! Tenho interesse na peça "${productName}". Ainda está disponível?`);
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+  }
+
+  const grid = document.getElementById('product-grid');
+  const filterBar = document.getElementById('filter-bar');
+  const headerFilters = document.getElementById('header-filters');
+
+  // Monta a lista de filtros: Destaques + cada categoria única, na ordem em que aparecem
+  const categorias = [...new Set(PRODUCTS.map(p => p.categoria))];
+  const filtros = ["Destaques", ...categorias];
+  let filtroAtivo = "Destaques";
+
+  function renderCards(lista){
+    grid.innerHTML = "";
+    if(lista.length === 0){
+      grid.innerHTML = `<p class="empty-msg">Nenhuma peça marcada como destaque ainda. Edite o campo "destaque" nos produtos.</p>`;
+      return;
+    }
+    lista.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="img-wrap"><img src="${p.imagem}" alt="${p.nome}" loading="lazy"></div>
+        <div class="info">
+          <div class="tag">${p.categoria}</div>
+          <h3>${p.nome}</h3>
+          <div class="price">${p.preco}</div>
+          <a class="contact-link" href="${waLink(p.nome)}" target="_blank" rel="noopener">
+            Consultar disponibilidade
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function aplicarFiltro(nome, rolarAte){
+    filtroAtivo = nome;
+    document.querySelectorAll('[data-filtro]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.filtro === nome);
+    });
+    const lista = nome === "Destaques"
+      ? PRODUCTS.filter(p => p.destaque)
+      : PRODUCTS.filter(p => p.categoria === nome);
+    renderCards(lista);
+    if(rolarAte){
+      document.getElementById('colecao').scrollIntoView({ behavior: 'smooth' });
+    }
+    document.getElementById('main-nav').classList.remove('open');
+  }
+
+  filtros.forEach(nome => {
+    // botão na seção de coleção
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn' + (nome === filtroAtivo ? ' active' : '');
+    btn.textContent = nome;
+    btn.dataset.filtro = nome;
+    btn.addEventListener('click', () => aplicarFiltro(nome, false));
+    filterBar.appendChild(btn);
+
+    // botão equivalente no cabeçalho
+    const navBtn = document.createElement('button');
+    navBtn.className = 'nav-filter-btn' + (nome === filtroAtivo ? ' active' : '');
+    navBtn.textContent = nome;
+    navBtn.dataset.filtro = nome;
+    navBtn.addEventListener('click', () => aplicarFiltro(nome, true));
+    headerFilters.appendChild(navBtn);
+  });
+
+  aplicarFiltro(filtroAtivo, false);
+
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('main-nav').classList.toggle('open');
+  });
+
+  // ---------- tema claro / escuro ----------
+  const THEME_KEY = 'aurea-tema';
+  const themeIcon = document.getElementById('theme-icon');
+
+  const SUN_PATH = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+  const MOON_PATH = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+  function aplicarTema(tema){
+    document.documentElement.setAttribute('data-theme', tema);
+    themeIcon.innerHTML = tema === 'light' ? SUN_PATH : MOON_PATH;
+    localStorage.setItem(THEME_KEY, tema);
+  }
+
+  const temaSalvo = localStorage.getItem(THEME_KEY);
+  const preferenciaSistema = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  aplicarTema(temaSalvo || preferenciaSistema);
+
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const atual = document.documentElement.getAttribute('data-theme');
+    aplicarTema(atual === 'light' ? 'dark' : 'light');
+  });
+
+  document.getElementById('wa-contact-btn').href = `https://wa.me/${WHATSAPP_NUMBER}`;
+  document.getElementById('wa-float-btn').href = `https://wa.me/${WHATSAPP_NUMBER}`;
+  document.getElementById('ig-contact-btn').href = `https://instagram.com/${INSTAGRAM_USER}`;
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
