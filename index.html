@@ -112,6 +112,7 @@
     flex-shrink:0;
   }
   .nav-filter-btn{
+    display: inline-block;
     padding: 7px 16px;
     border: 1px solid transparent;
     background: transparent;
@@ -166,6 +167,37 @@
   }
   .theme-toggle:hover{ border-color: var(--gold); }
   .theme-toggle svg{ width:18px; height:18px; }
+
+  .fav-header-btn{
+    position: relative;
+    background:none;
+    border: 1px solid var(--hairline);
+    width: 40px; height: 40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: var(--gold);
+    cursor:pointer;
+    flex-shrink:0;
+    transition: border-color .25s ease;
+  }
+  .fav-header-btn:hover{ border-color: var(--gold); }
+  .fav-header-btn svg{ width:18px; height:18px; }
+  .fav-count{
+    position:absolute;
+    top:-6px; right:-6px;
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 10px;
+    font-family:'Jost', sans-serif;
+    width:17px; height:17px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1;
+  }
+  .fav-count.hidden{ display:none; }
 
   @media (max-width: 860px){
     nav{
@@ -286,6 +318,7 @@
     margin: 0 auto 56px;
   }
   .filter-btn{
+    display: inline-block;
     padding: 10px 22px;
     border: 1px solid var(--hairline);
     color: var(--muted);
@@ -321,6 +354,11 @@
     grid-column: 1 / -1;
     padding: 40px 0;
   }
+  .empty-msg a{
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+  }
 
   .card{
     background: var(--surface);
@@ -332,10 +370,32 @@
     transform: translateY(-4px);
   }
   .card .img-wrap{
+    position: relative;
     aspect-ratio: 4/5;
     overflow: hidden;
     background: var(--img-bg);
   }
+  .fav-btn{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--hairline);
+    background: var(--surface);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor: pointer;
+    color: var(--cream);
+    z-index: 2;
+    transition: all .25s ease;
+  }
+  .fav-btn:hover{ border-color: var(--gold); color: var(--gold); }
+  .fav-btn svg{ width:18px; height:18px; transition: all .2s ease; }
+  .fav-btn.active{ color: var(--gold); border-color: var(--gold); }
+  .fav-btn.active svg{ fill: var(--gold); }
   .card img{
     width:100%; height:100%;
     object-fit: cover;
@@ -489,8 +549,13 @@
     <span class="nav-sep"></span>
     <a href="#sobre">Sobre</a>
     <a href="#contato">Contato</a>
+    <a href="favoritos.html">Favoritos</a>
   </nav>
   <div class="header-controls">
+    <a href="favoritos.html" class="fav-header-btn" id="fav-header-btn" aria-label="Ver peças favoritas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span class="fav-count hidden" id="fav-count">0</span>
+    </a>
     <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro">
       <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
     </button>
@@ -564,6 +629,10 @@
 
   /* ============================================================
      ÁREA DE EDIÇÃO — troque os valores abaixo pelos seus dados
+
+     IMPORTANTE: a lista PRODUCTS também existe em favoritos.html.
+     Se adicionar, remover ou editar peças aqui, faça o mesmo lá
+     para manter as duas páginas em sincronia.
      ============================================================ */
 
   // Seu número de WhatsApp com código do país, sem espaços/símbolos
@@ -710,11 +779,53 @@
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
   }
 
+  // ---------- favoritos ----------
+  const FAV_KEY = 'vyck-favoritos';
+
+  function slugify(str){
+    return str.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  }
+  // dá um id estável pra cada peça (baseado no nome), usado pra lembrar favoritos
+  PRODUCTS.forEach(p => { if(!p.id) p.id = slugify(p.nome); });
+
+  function getFavoritos(){
+    try{ return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }
+    catch(e){ return []; }
+  }
+  function salvarFavoritos(lista){
+    localStorage.setItem(FAV_KEY, JSON.stringify(lista));
+  }
+  function toggleFavorito(id){
+    let favoritos = getFavoritos();
+    favoritos = favoritos.includes(id)
+      ? favoritos.filter(f => f !== id)
+      : [...favoritos, id];
+    salvarFavoritos(favoritos);
+    atualizarContadorFavoritos();
+    aplicarFiltro(filtroAtivo, false);
+  }
+  function atualizarContadorFavoritos(){
+    const count = getFavoritos().length;
+    const badge = document.getElementById('fav-count');
+    badge.textContent = count;
+    badge.classList.toggle('hidden', count === 0);
+  }
+
   const grid = document.getElementById('product-grid');
   const filterBar = document.getElementById('filter-bar');
   const headerFilters = document.getElementById('header-filters');
 
-  // Monta a lista de filtros: Destaques + cada categoria única, na ordem em que aparecem
+  grid.addEventListener('click', (e) => {
+    const btn = e.target.closest('.fav-btn');
+    if(!btn) return;
+    toggleFavorito(btn.dataset.id);
+  });
+
+  // Monta a lista de filtros: Destaques + cada categoria única
+  // (Favoritos agora tem sua própria página, veja favoritos.html)
   const categorias = [...new Set(PRODUCTS.map(p => p.categoria))];
   const filtros = ["Destaques", ...categorias];
   let filtroAtivo = "Destaques";
@@ -725,11 +836,18 @@
       grid.innerHTML = `<p class="empty-msg">Nenhuma peça marcada como destaque ainda. Edite o campo "destaque" nos produtos.</p>`;
       return;
     }
+    const favoritos = getFavoritos();
     lista.forEach(p => {
       const card = document.createElement('div');
       card.className = 'card';
+      const isFav = favoritos.includes(p.id);
       card.innerHTML = `
-        <div class="img-wrap"><img src="${p.imagem}" alt="${p.nome}" loading="lazy"></div>
+        <div class="img-wrap">
+          <img src="${p.imagem}" alt="${p.nome}" loading="lazy">
+          <button class="fav-btn ${isFav ? 'active' : ''}" data-id="${p.id}" aria-label="Favoritar ${p.nome}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
         <div class="info">
           <div class="tag">${p.categoria}</div>
           <h3>${p.nome}</h3>
@@ -749,8 +867,7 @@
     document.querySelectorAll('[data-filtro]').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.filtro === nome);
     });
-    const lista = nome === "Destaques"
-      ? PRODUCTS.filter(p => p.destaque)
+    const lista = nome === "Destaques" ? PRODUCTS.filter(p => p.destaque)
       : PRODUCTS.filter(p => p.categoria === nome);
     renderCards(lista);
     if(rolarAte){
@@ -782,6 +899,10 @@
   document.getElementById('menu-toggle').addEventListener('click', () => {
     document.getElementById('main-nav').classList.toggle('open');
   });
+
+  // O botão de favoritos agora é um link direto para favoritos.html
+  // (o contador de favoritos abaixo continua atualizado normalmente)
+  atualizarContadorFavoritos();
 
   // ---------- tema claro / escuro ----------
   const THEME_KEY = 'aurea-tema';
