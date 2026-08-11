@@ -405,6 +405,39 @@
   }
   .card:hover img{ transform: scale(1.06); }
 
+  .img-dots{
+    position:absolute;
+    bottom:10px; left:0; right:0;
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    z-index:2;
+  }
+  .img-dot{
+    width:6px; height:6px;
+    border-radius:50%;
+    background: rgba(240,232,219,0.45);
+    border: 1px solid rgba(0,0,0,0.25);
+    cursor:pointer;
+    transition: all .2s ease;
+    padding:0;
+  }
+  .img-dot.active{
+    background: var(--gold-bright);
+    transform: scale(1.25);
+  }
+  .img-nav{
+    position:absolute;
+    top:0; bottom:0;
+    width:38%;
+    z-index:1;
+    cursor:pointer;
+    background:transparent;
+    border:none;
+  }
+  .img-nav.prev{ left:0; }
+  .img-nav.next{ right:0; }
+
   .card .info{ padding: 22px 24px 26px; }
   .card .tag{
     font-size: 11px;
@@ -645,6 +678,18 @@
   // Suas peças. Adicione, remova ou edite os itens abaixo.
   // "imagem" pode ser um link de foto sua (ex: hospedada no imgur, ou dentro
   // da pasta do site, tipo "imagens/colar-1.jpg")
+  //
+  // Quer colocar MAIS DE UMA FOTO no mesmo produto? Troque "imagem" (singular)
+  // por "imagens" (plural), com uma lista de fotos entre colchetes. Exemplo:
+  //   {
+  //     nome: "Colar Pérolas",
+  //     categoria: "Colares",
+  //     preco: "R$ 30,00",
+  //     destaque: false,
+  //     imagens: ["colares/colar-perolas.jpg", "colares/colar-perolas-2.jpg"]
+  //   }
+  // O card mostrará bolinhas para navegar entre as fotos. Pode usar quantas
+  // fotos quiser (2, 3, 4...). Se usar "imagens", pode remover a linha "imagem".
   const PRODUCTS = [
 
       // Destaques:
@@ -760,14 +805,192 @@
       destaque: false,
       imagem: "aneis/anel-borboleta.jpg"
     },
-    // Pulseiras:
     {
-      nome: "Anel Duplo Trançado",
+      nome: "Anel Morcego",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8308.jpg"
+    },
+    {
+      nome: "Anel Bola Oito",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagem: "aneis/IMG_8329.jpg"
+    },
+    {
+      nome: "Anel Corrente",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      destaque: false,
+      imagem: "aneis/IMG_8330.jpg"
+    },
+    {
+      nome: "Anel Largo Borboleta",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8333.jpg"
+    },
+    {
+      nome: "Anel Acorrentado",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      destaque: false,
+      imagem: "aneis/IMG_8336.jpg"
+    },
+    {
+      nome: "Anel Cobra",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8343.jpg"
+    },
+    {
+      nome: "Anel Love",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      destaque: false,
+      imagem: "aneis/IMG_8349.jpg"
+    },
+    {
+      nome: "Anel Coroa Preta",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      destaque: false,
+      imagem: "aneis/IMG_8351.jpg"
+    },
+    {
+      nome: "Anel Caveira Antiga",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8355.jpg"
+    },
+    {
+      nome: "Anel Pedra Preta",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      destaque: false,
+      imagem: "aneis/IMG_8356.jpg"
+    },
+    {
+      nome: "Anel Angel",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagem: "aneis/IMG_8361.jpg"
+    },
+    {
+      nome: "Anel Coração Pretzel",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8366.jpg"
+    },
+    {
+      nome: "Anel Girassol",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8367.jpg"
+    },
+    {
+      nome: "Anel Ying Yang",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8369.jpg"
+    },
+    {
+      nome: "Anel Minimalista 1",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8337.jpg"
+    },
+    {
+      nome: "Anel Minimalista 2",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8342.jpg"
+    },
+    {
+      nome: "Anel Minimalista 3",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8348.jpg"
+    },
+    {
+      nome: "Anel Minimalista 4",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8360.jpg"
+    },
+    {
+      nome: "Anel Minimalista 5",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8364.jpg"
+    },
+    {
+      nome: "Anel Minimalista 6",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8370.jpg"
+    },
+    
+    // Pulseiras:
+    
+    {
+      nome: "Pulseira Lisa",
       categoria: "Pulseiras",
       preco: "R$ 179,00",
       destaque: false,
-      imagem: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80"
+      imagens: ["pulseiras/IMG_8439.JPG", "pulseiras/IMG_8440.jpg"]
+    },
+    {
+      nome: "Pulseira Trançada",
+      categoria: "Pulseiras",
+      preco: "R$ 179,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8437.jpg", "pulseiras/IMG_8441.jpg"]
     }
+    {
+      nome: "Pulseira Bolinha",
+      categoria: "Pulseiras",
+      preco: "R$ 179,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8461.jpg", "pulseiras/IMG_8440.jpg"]
+    },
+    {
+      nome: "Pulseira Lisa",
+      categoria: "Pulseiras",
+      preco: "R$ 179,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8439.jpg", "pulseiras/IMG_8440.jpg"]
+    },
+    {
+      nome: "Pulseira Lisa",
+      categoria: "Pulseiras",
+      preco: "R$ 179,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8439.jpg", "pulseiras/IMG_8440.jpg"]
+    },
+    {
+      nome: "Pulseira Lisa",
+      categoria: "Pulseiras",
+      preco: "R$ 179,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8439.jpg", "pulseiras/IMG_8440.jpg"]
+    },
+    
   ];
 
   /* ============================================================
@@ -819,10 +1042,33 @@
   const headerFilters = document.getElementById('header-filters');
 
   grid.addEventListener('click', (e) => {
-    const btn = e.target.closest('.fav-btn');
-    if(!btn) return;
-    toggleFavorito(btn.dataset.id);
+    const favBtn = e.target.closest('.fav-btn');
+    if(favBtn){ toggleFavorito(favBtn.dataset.id); return; }
+
+    const dot = e.target.closest('.img-dot');
+    if(dot){
+      const wrap = dot.closest('.img-wrap');
+      mostrarImagem(wrap, Number(dot.dataset.idx));
+      return;
+    }
+
+    const navBtn = e.target.closest('.img-nav');
+    if(navBtn){
+      const wrap = navBtn.closest('.img-wrap');
+      const imgs = JSON.parse(wrap.dataset.imgs);
+      const atual = Number(wrap.dataset.idx);
+      const dir = navBtn.classList.contains('next') ? 1 : -1;
+      const novo = (atual + dir + imgs.length) % imgs.length;
+      mostrarImagem(wrap, novo);
+    }
   });
+
+  function mostrarImagem(wrap, idx){
+    const imgs = JSON.parse(wrap.dataset.imgs);
+    wrap.dataset.idx = idx;
+    wrap.querySelector('img').src = imgs[idx];
+    wrap.querySelectorAll('.img-dot').forEach((d,i) => d.classList.toggle('active', i === idx));
+  }
 
   // Monta a lista de filtros: Destaques + cada categoria única
   // (Favoritos agora tem sua própria página, veja favoritos.html)
@@ -841,9 +1087,17 @@
       const card = document.createElement('div');
       card.className = 'card';
       const isFav = favoritos.includes(p.id);
+      const imgs = (p.imagens && p.imagens.length) ? p.imagens : [p.imagem];
       card.innerHTML = `
-        <div class="img-wrap">
-          <img src="${p.imagem}" alt="${p.nome}" loading="lazy">
+        <div class="img-wrap" data-imgs='${JSON.stringify(imgs)}' data-idx="0">
+          <img src="${imgs[0]}" alt="${p.nome}" loading="lazy">
+          ${imgs.length > 1 ? `
+            <button class="img-nav prev" aria-label="Foto anterior"></button>
+            <button class="img-nav next" aria-label="Próxima foto"></button>
+            <div class="img-dots">
+              ${imgs.map((_, i) => `<button class="img-dot ${i === 0 ? 'active' : ''}" data-idx="${i}" aria-label="Foto ${i + 1}"></button>`).join('')}
+            </div>
+          ` : ''}
           <button class="fav-btn ${isFav ? 'active' : ''}" data-id="${p.id}" aria-label="Favoritar ${p.nome}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
