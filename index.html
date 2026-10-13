@@ -13,7 +13,17 @@
   /* ============================================
      CONFIGURAÇÃO RÁPIDA — edite aqui
      ============================================ */
+    /* ===== AJUSTE DO ENQUADRAMENTO DAS FOTOS NOS CARDS =====
+     --card-ratio : formato da moldura (largura/altura). 4/5 = vertical, 1/1 = quadrado, 4/3 ou 16/9 = horizontal
+     --card-fit   : cover = preenche e corta as bordas (parece "zoom")
+                    contain = mostra a foto inteira, sem cortar (pode sobrar espaço nas laterais)
+     --card-focus : parte da foto que fica visível quando é cortada (center, top, bottom, left, right ou ex: 50% 30%) */
   :root{
+    --card-ratio: 4/5;
+    --card-fit: cover;
+    --card-focus: center;
+  }
+:root{
     --whatsapp-number: "5511999999999"; /* apenas para referência visual, o número real está no JS abaixo */
   }
 
@@ -112,6 +122,7 @@
     flex-shrink:0;
   }
   .nav-filter-btn{
+    display: inline-block;
     padding: 7px 16px;
     border: 1px solid transparent;
     background: transparent;
@@ -166,6 +177,37 @@
   }
   .theme-toggle:hover{ border-color: var(--gold); }
   .theme-toggle svg{ width:18px; height:18px; }
+
+  .fav-header-btn{
+    position: relative;
+    background:none;
+    border: 1px solid var(--hairline);
+    width: 40px; height: 40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: var(--gold);
+    cursor:pointer;
+    flex-shrink:0;
+    transition: border-color .25s ease;
+  }
+  .fav-header-btn:hover{ border-color: var(--gold); }
+  .fav-header-btn svg{ width:18px; height:18px; }
+  .fav-count{
+    position:absolute;
+    top:-6px; right:-6px;
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 10px;
+    font-family:'Jost', sans-serif;
+    width:17px; height:17px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1;
+  }
+  .fav-count.hidden{ display:none; }
 
   @media (max-width: 860px){
     nav{
@@ -286,6 +328,7 @@
     margin: 0 auto 56px;
   }
   .filter-btn{
+    display: inline-block;
     padding: 10px 22px;
     border: 1px solid var(--hairline);
     color: var(--muted);
@@ -321,6 +364,11 @@
     grid-column: 1 / -1;
     padding: 40px 0;
   }
+  .empty-msg a{
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+  }
 
   .card{
     background: var(--surface);
@@ -332,18 +380,77 @@
     transform: translateY(-4px);
   }
   .card .img-wrap{
-    aspect-ratio: 4/5;
+    position: relative;
+    aspect-ratio: var(--card-ratio);
     overflow: hidden;
     background: var(--img-bg);
   }
+  .fav-btn{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--hairline);
+    background: var(--surface);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor: pointer;
+    color: var(--cream);
+    z-index: 2;
+    transition: all .25s ease;
+  }
+  .fav-btn:hover{ border-color: var(--gold); color: var(--gold); }
+  .fav-btn svg{ width:18px; height:18px; transition: all .2s ease; }
+  .fav-btn.active{ color: var(--gold); border-color: var(--gold); }
+  .fav-btn.active svg{ fill: var(--gold); }
+
+  /* --zoom vem de cada produto (campo "zoom"); sem ele, vale 1 = sem alteração */
   .card img{
     width:100%; height:100%;
-    object-fit: cover;
+    object-fit: var(--card-fit);
+    object-position: var(--card-focus);
     display:block;
+    transform: scale(var(--zoom, 1));
     transition: transform .6s ease;
     filter: saturate(0.92);
   }
-  .card:hover img{ transform: scale(1.06); }
+  .card:hover img{ transform: scale(calc(var(--zoom, 1) * 1.06)); }
+
+  .img-dots{
+    position:absolute;
+    bottom:10px; left:0; right:0;
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    z-index:2;
+  }
+  .img-dot{
+    width:6px; height:6px;
+    border-radius:50%;
+    background: rgba(240,232,219,0.45);
+    border: 1px solid rgba(0,0,0,0.25);
+    cursor:pointer;
+    transition: all .2s ease;
+    padding:0;
+  }
+  .img-dot.active{
+    background: var(--gold-bright);
+    transform: scale(1.25);
+  }
+  .img-nav{
+    position:absolute;
+    top:0; bottom:0;
+    width:38%;
+    z-index:1;
+    cursor:pointer;
+    background:transparent;
+    border:none;
+  }
+  .img-nav.prev{ left:0; }
+  .img-nav.next{ right:0; }
 
   .card .info{ padding: 22px 24px 26px; }
   .card .tag{
@@ -489,8 +596,13 @@
     <span class="nav-sep"></span>
     <a href="#sobre">Sobre</a>
     <a href="#contato">Contato</a>
+    <a href="favoritos.html">Favoritos</a>
   </nav>
   <div class="header-controls">
+    <a href="favoritos.html" class="fav-header-btn" id="fav-header-btn" aria-label="Ver peças favoritas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span class="fav-count hidden" id="fav-count">0</span>
+    </a>
     <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro">
       <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
     </button>
@@ -501,9 +613,9 @@
 </header>
 
 <section class="hero">
-  <div class="eyebrow">Acessórios em pequenas edições</div>
+  <div class="eyebrow">Acessórios para todos os momentos</div>
   <h1>Peças que carregam <em>história</em>, não apenas brilho</h1>
-  <p>Cada acessório é selecionado a dedo — colares, brincos e anéis para quem escolhe suas peças com intenção.</p>
+  <p>Cada acessório é selecionado a dedo — colares, brincos e anéis para quem escolhe suas peças com personalidade.</p>
   <div class="divider" style="margin-bottom: 34px;">
     <div class="line"></div><span class="diamond"></span><div class="line"></div>
   </div>
@@ -512,7 +624,7 @@
 
 <section id="colecao">
   <div class="section-head">
-    <div class="eyebrow"><span class="diamond"></span>Coleção atual<span class="diamond"></span></div>
+    <div class="eyebrow"><span class="diamond"></span>Coleção<span class="diamond"></span></div>
     <h2>Peças em destaque</h2>
   </div>
 
@@ -524,7 +636,7 @@
 <section id="sobre">
   <div class="about">
     <div class="img-wrap">
-      <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80" alt="Detalhe de acessório dourado">
+      <img src="aneis/anel-aranha.jpg" alt="Detalhe de acessório dourado">
     </div>
     <div>
       <div class="eyebrow">Nossa história</div>
@@ -538,7 +650,7 @@
 <section class="contact" id="contato">
   <div class="eyebrow" style="color:var(--gold); letter-spacing:4px; font-size:12px; text-transform:uppercase; margin-bottom:18px;">Fale com a gente</div>
   <h2>Gostou de alguma peça?</h2>
-  <p>Fale direto comigo pelo WhatsApp ou acompanhe as novidades no Instagram — publico peças novas toda semana.</p>
+  <p>Fale direto comigo pelo WhatsApp ou acompanhe as novidades no Instagram — publico peças novas por lá.</p>
   <div class="contact-buttons">
     <a href="#" id="wa-contact-btn" class="btn-solid" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.85 9.85 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67c2.24 0 4.34.87 5.92 2.45a8.23 8.23 0 0 1 2.42 5.85c0 4.55-3.7 8.25-8.29 8.25a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.55 3.7-8.25 8.24-8.25M8.53 7.33c-.16 0-.43.06-.65.31c-.22.24-.86.84-.86 2.05c0 1.21.88 2.38 1 2.55c.12.16 1.7 2.72 4.2 3.71c2.08.83 2.5.66 2.95.62c.45-.04 1.45-.59 1.65-1.16c.2-.57.2-1.06.14-1.16c-.06-.1-.22-.16-.45-.28c-.24-.12-1.45-.72-1.68-.8c-.22-.08-.39-.12-.55.12c-.16.24-.63.8-.78.96c-.14.16-.29.18-.53.06c-.24-.12-1.02-.38-1.94-1.2c-.72-.64-1.2-1.44-1.35-1.68c-.14-.24-.02-.37.11-.49c.11-.11.24-.29.37-.43c.12-.15.16-.25.24-.41c.08-.17.04-.31-.02-.43c-.06-.12-.55-1.36-.77-1.85c-.19-.46-.4-.42-.55-.43c-.14 0-.31 0-.48 0z"/></svg>
@@ -564,6 +676,10 @@
 
   /* ============================================================
      ÁREA DE EDIÇÃO — troque os valores abaixo pelos seus dados
+
+     IMPORTANTE: a lista PRODUCTS também existe em favoritos.html.
+     Se adicionar, remover ou editar peças aqui, faça o mesmo lá
+     para manter as duas páginas em sincronia.
      ============================================================ */
 
   // Seu número de WhatsApp com código do país, sem espaços/símbolos
@@ -576,9 +692,43 @@
   // Suas peças. Adicione, remova ou edite os itens abaixo.
   // "imagem" pode ser um link de foto sua (ex: hospedada no imgur, ou dentro
   // da pasta do site, tipo "imagens/colar-1.jpg")
+  //
+  // Quer colocar MAIS DE UMA FOTO no mesmo produto? Troque "imagem" (singular)
+  // por "imagens" (plural), com uma lista de fotos entre colchetes. Exemplo:
+  //   {
+  //     nome: "Colar Pérolas",
+  //     categoria: "Colares",
+  //     preco: "R$ 30,00",
+  //     destaque: false,
+  //     imagens: ["colares/colar-perolas.jpg", "colares/colar-perolas-2.jpg"]
+  //   }
+  // O card mostrará bolinhas para navegar entre as fotos. Pode usar quantas
+  // fotos quiser (2, 3, 4...). Se usar "imagens", pode remover a linha "imagem".
+  //
+  // Cada foto da lista também pode ser um objeto com ajustes próprios:
+  //   imagens: [
+  //     { src: "pulseiras/foto1.jpg", foco: "50% 20%", ajuste: "contain", zoom: 1 },
+  //     "pulseiras/foto2.jpg"
+  //   ]
+  // O que for escrito direto no produto vale como padrão para as fotos
+  // que não tiverem o próprio valor.
+  //
+  // AJUSTES OPCIONAIS DE ENQUADRAMENTO (por peça — se não escrever nada,
+  // a peça segue o padrão definido no CSS lá em cima):
+  //   foco:   parte da foto que fica visível. Ex: "top", "bottom", "50% 30%"
+  //   ajuste: "cover" (preenche e corta) ou "contain" (foto inteira, sem cortar)
+  //   zoom:   ampliação da foto. 1 = normal, 1.2 = +20%, 1.5 = +50%,
+  //           0.8 = reduz (só faz sentido com ajuste: "contain")
+  //           O zoom cresce a partir do ponto definido em "foco".
+  //   fundo:  cor das margens quando a foto não preenche a moldura.
+  //           Ex: "#000" (preto), "#fff" (branco). Sem isso, usa o cinza padrão.
+  //   Exemplo:
+  //     foco: "50% 40%",
+  //     zoom: 1.3,
+  //     fundo: "#000"
   const PRODUCTS = [
 
-      // Destaques:
+    // Destaques:
     {
       nome: "Colar Borboleta Cravejada",
       categoria: "Colares",
@@ -586,119 +736,441 @@
       destaque: true,
       imagem: "colares/colar-borboleta-cravejada.jpg"
     },
-    
-    // Colares:
 
-    
+    // Colares:
     {
-      nome: "Colar Borboleta Cravejada 2",
+      nome: "Colar Borboleta Monarca",
       categoria: "Colares",
       preco: "R$ 35,00",
       destaque: false,
       imagem: "colares/colar-borboleta-cravejada2.jpg"
     },
     {
-      nome: "Conjunto Perolado",
+      nome: "Conjunto Lua Cheia",
       categoria: "Colares",
       preco: "R$ 40,00",
       destaque: false,
       imagem: "colares/colar-conjunto-perolado.jpg"
     },
     {
-      nome: "Colar Corrente Fina",
+      nome: "Colar Fio de Prata",
       categoria: "Colares",
       preco: "R$ 30,00",
       destaque: false,
-      imagem: "colares/colar-corrente-fina.jpg"
+      imagem: "colares/colar-corrente-fina.jpg",
+      foco: "20% 65%",
+      zoom: 1.2
     },
-       {
-      nome: "Colar Corrente Larga",
+    {
+      nome: "Colar Elo Grosso",
       categoria: "Colares",
       preco: "R$ 30,00",
       destaque: false,
       imagem: "colares/colar-corrente-larga.jpg"
     },
-       {
+    {
       nome: "Colar Duo Coração",
       categoria: "Colares",
       preco: "R$ 40,00",
       destaque: false,
       imagem: "colares/colar-duo-coracao.jpg"
     },
-       {
-      nome: "Colar Gargantilha Borboletas",
+    {
+      nome: "Colar Gargantilha de Borboleta",
       categoria: "Colares",
       preco: "R$ 36,00",
       destaque: false,
       imagem: "colares/colar-gargantilha-borboletas.jpg"
     },
-       {
-      nome: "Colar Pérolas",
+    {
+      nome: "Colar Pérolado",
       categoria: "Colares",
       preco: "R$ 30,00",
       destaque: false,
       imagem: "colares/colar-perolas.jpg"
     },
-       {
-      nome: "Colar Pérola Única",
+    {
+      nome: "Colar Pérola Solitária",
       categoria: "Colares",
       preco: "R$ 30,00",
       destaque: false,
       imagem: "colares/colar-perola-unica.jpg"
     },
+    {
+      nome: "Colar Estrela Solitária",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      destaque: false,
+      imagem: "colares/IMG_8408.JPG"
+    },
+    {
+      nome: "Colar Slim",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      destaque: false,
+      imagem: "colares/IMG_8410.JPG"
+    },
+    {
+      nome: "Colar Mini Borboleta",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      destaque: false,
+      imagem: "colares/IMG_8406.JPG"
+    },
+    {
+      nome: "Colar Pérola de Prata",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      destaque: false,
+      imagem: "colares/IMG_8422.JPG"
+    },
+
     // Brincos:
     {
-      nome: "Brinco Arame Farpado",
+      nome: "Brinco Farpado",
       categoria: "Brincos",
       preco: "R$ 20,00",
       destaque: false,
-      imagem: "brincos/brinco-arame.jpg"
+      imagem: "brincos/brinco-arame.jpg",
+      foco: "43% 18%",
+      zoom: 1.4
+      
     },
     {
       nome: "Brinco Aranha",
       categoria: "Brincos",
       preco: "R$ 20,00",
-      destaque: false,
-      imagem: "brincos/brinco-aranha.jpg"
+      destaque: true,
+      imagem: "brincos/brinco-aranha.jpg",
+      foco: "43% 20%",
+      zoom: 1.3
+      
     },
-        {
+    {
       nome: "Brinco Coração",
       categoria: "Brincos",
       preco: "R$ 20,00",
       destaque: false,
-      imagem: "brincos/brinco-coracao.jpg"
+      imagem: "brincos/brinco-coracao.jpg",
+      foco: "30% 23%",          // opcional
+      zoom: 1.4,                 // opcional (1 = normal; ex: 1.3 para ampliar)
+      fundo: "#000" 
     },
-    
+    {
+      nome: "Brinco Caveira",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagem: "brincos/IMG_8483.JPG"
+    },
+    {
+      nome: "Brinco Asas de Morcego",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagem: "brincos/IMG_8473.JPG",
+      foco: "45% 50%",          // opcional
+      ajuste: "scale-down",    // opcional
+      zoom: 1.8,                 // opcional (1 = normal; ex: 1.3 para ampliar)
+      fundo: "#000"            // opcional (cor das margens sobrando)
+    },
+    {
+      nome: "Brinco Aranha de Rubi",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagem: "brincos/IMG_8479.JPG"
+    },
+    {
+      nome: "Brinco Coração de Ônix",
+      categoria: "Brincos",
+      preco: "R$ 10,00",
+      destaque: false,
+      imagem: "brincos/IMG_8484.JPG"
+    },
+    {
+      nome: "Brinco Pérola Clássica",
+      categoria: "Brincos",
+      preco: "R$ 12,00",
+      destaque: false,
+      imagem: "brincos/IMG_8486.JPG"
+    },
+    {
+      nome: "Brinco Cubo",
+      categoria: "Brincos",
+      preco: "R$ 10,00",
+      destaque: false,
+      imagem: "brincos/IMG_8490.JPG",
+      foco: "40% 50%",          // opcional
+      zoom: 1.8,                 // opcional (1 = normal; ex: 1.3 para ampliar)
+      fundo: "#000" 
+    },
+    {
+      nome: "Brinco Slim",
+      categoria: "Brincos",
+      preco: "R$ 10,00",
+      destaque: false,
+      imagem: "brincos/IMG_8491.JPG",
+      foco: "44% 50%",          // opcional
+      ajuste: "scale-down",    // opcional
+      zoom: 1.8,                 // opcional (1 = normal; ex: 1.3 para ampliar)
+      fundo: "#000" 
+    },
+
     // Anéis:
     {
-      nome: "Anel Arame Farpado",
+      nome: "Anel Farpado",
       categoria: "Anéis",
       preco: "R$ 20,00",
       destaque: false,
-      imagem: "aneis/anel-arame.jpg"
+      imagem: "aneis/anel-arame.jpg",
+      foco: "45% 45%",
+      zoom: 2.0
     },
     {
       nome: "Anel Aranha",
       categoria: "Anéis",
       preco: "R$ 20,00",
-      destaque: false,
-      imagem: "aneis/anel-aranha.jpg"
-    },
+      destaque: true,
+      imagem: "aneis/anel-aranha.jpg",
+      foco: "33% 45%",
+      zoom: 2.0
+      },
     {
-      nome: "Anel Borboleta",
+      nome: "Anel Monarca",
       categoria: "Anéis",
       preco: "R$ 17,00",
       destaque: false,
       imagem: "aneis/anel-borboleta.jpg"
     },
+    {
+      nome: "Anel Morcego",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8308.JPG",
+      foco: "44% 55%",
+      zoom: 2.0
+    },
+    {
+      nome: "Anel Bola Oito",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagem: "aneis/IMG_8329.JPG"
+    },
+    {
+      nome: "Anel Elo Largo",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      destaque: false,
+      imagem: "aneis/IMG_8330.JPG"
+    },
+    {
+      nome: "Anel Monarca Largo",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8333.JPG"
+    },
+    {
+      nome: "Anel Elo",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      destaque: false,
+      imagem: "aneis/IMG_8336.JPG"
+    },
+    {
+      nome: "Anel Serpente",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8343.JPG"
+    },
+    {
+      nome: "Anel Love Letter",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      destaque: false,
+      imagem: "aneis/IMG_8349.JPG"
+    },
+    {
+      nome: "Anel Coroa Negra",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      destaque: false,
+      imagem: "aneis/IMG_8351.JPG"
+    },
+    {
+      nome: "Anel Caveira",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8355.JPG"
+    },
+    {
+      nome: "Anel Ônix",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      destaque: false,
+      imagem: "aneis/IMG_8356.JPG"
+    },
+    {
+      nome: "Anel Angel",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagem: "aneis/IMG_8361.JPG"
+    },
+    {
+      nome: "Anel Coração Entrelaçado",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8366.JPG"
+    },
+    {
+      nome: "Anel Girassol",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8367.JPG"
+    },
+    {
+      nome: "Anel Yin Yang",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/IMG_8369.JPG"
+    },
+    {
+      nome: "Anel Filigrama",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8337.JPG"
+    },
+    {
+      nome: "Anel Ondas",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8342.JPG"
+    },
+    {
+      nome: "Anel Folhas",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8348.JPG"
+    },
+    {
+      nome: "Anel Trança",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8360.JPG"
+    },
+    {
+      nome: "Anel Pontilhado",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8364.JPG"
+    },
+    {
+      nome: "Anel Arabesco",
+      categoria: "Anéis",
+      preco: "R$ 13,00",
+      destaque: false,
+      imagem: "aneis/IMG_8370.JPG"
+    },
+
     // Pulseiras:
     {
-      nome: "Anel Duplo Trançado",
+      nome: "Pulseira Lisa",
       categoria: "Pulseiras",
-      preco: "R$ 179,00",
+      preco: "R$ 20,00",
       destaque: false,
-      imagem: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80"
-    }
+      imagens: [
+        { src: "pulseiras/IMG_8439.JPG", foco: "55% 90%", ajuste: "contain", zoom: 2.3},
+        { src: "pulseiras/IMG_8440.JPG", foco: "60% 90%", ajuste: "contain", zoom: 2.3 }
+      ]
+      
+    },
+    {
+      nome: "Pulseira Trançada",
+      categoria: "Pulseiras",
+      preco: "R$ 25,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8437.JPG", 
+      { src: "pulseiras/IMG_8441.JPG", foco: "60% 90%", ajuste: "contain", zoom: 2.3 }
+      ]
+    },
+    {
+      nome: "Pulseira Esferas",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8461.JPG", "pulseiras/IMG_8460.JPG"]
+    },
+    {
+      nome: "Pulseira Cordame",
+      categoria: "Pulseiras",
+      preco: "R$ 25,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8442.JPG", "pulseiras/IMG_8443.JPG"]
+    },
+    {
+      nome: "Pulseira Elo Quadrado",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8446.JPG", "pulseiras/IMG_8447.JPG"]
+    },
+    {
+      nome: "Pulseira Fio Fino",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8449.JPG", "pulseiras/IMG_8448.JPG"]
+    },
+    {
+      nome: "Pulseira Trançada Fina",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8455.JPG", "pulseiras/IMG_8454.JPG"]
+    },
+    {
+      nome: "Pulseira Elo Largo",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8457.JPG", "pulseiras/IMG_8456.JPG"]
+    },
+    {
+      nome: "Pulseira Pérolas de Prata",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8458.JPG", "pulseiras/IMG_8459.JPG"]
+    },
+    {
+      nome: "Pulseira Elo Largo",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8463.JPG", "pulseiras/IMG_8462.JPG"]
+    },
+    {
+      nome: "Pulseira Ítalica",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagens: ["pulseiras/IMG_8467.JPG", "pulseiras/IMG_8468.JPG"]
+    },
+
   ];
 
   /* ============================================================
@@ -710,11 +1182,86 @@
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
   }
 
+  // ---------- favoritos ----------
+  const FAV_KEY = 'vyck-favoritos';
+
+  function slugify(str){
+    return str.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  }
+  // dá um id estável pra cada peça (baseado no nome), usado pra lembrar favoritos
+  PRODUCTS.forEach(p => { if(!p.id) p.id = slugify(p.nome); });
+
+  function getFavoritos(){
+    try{ return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }
+    catch(e){ return []; }
+  }
+  function salvarFavoritos(lista){
+    localStorage.setItem(FAV_KEY, JSON.stringify(lista));
+  }
+  function toggleFavorito(id){
+    let favoritos = getFavoritos();
+    favoritos = favoritos.includes(id)
+      ? favoritos.filter(f => f !== id)
+      : [...favoritos, id];
+    salvarFavoritos(favoritos);
+    atualizarContadorFavoritos();
+    aplicarFiltro(filtroAtivo, false);
+  }
+  function atualizarContadorFavoritos(){
+    const count = getFavoritos().length;
+    const badge = document.getElementById('fav-count');
+    badge.textContent = count;
+    badge.classList.toggle('hidden', count === 0);
+  }
+
   const grid = document.getElementById('product-grid');
   const filterBar = document.getElementById('filter-bar');
   const headerFilters = document.getElementById('header-filters');
 
-  // Monta a lista de filtros: Destaques + cada categoria única, na ordem em que aparecem
+  grid.addEventListener('click', (e) => {
+    const favBtn = e.target.closest('.fav-btn');
+    if(favBtn){ toggleFavorito(favBtn.dataset.id); return; }
+
+    const dot = e.target.closest('.img-dot');
+    if(dot){
+      const wrap = dot.closest('.img-wrap');
+      mostrarImagem(wrap, Number(dot.dataset.idx));
+      return;
+    }
+
+    const navBtn = e.target.closest('.img-nav');
+    if(navBtn){
+      const wrap = navBtn.closest('.img-wrap');
+      const imgs = JSON.parse(wrap.dataset.imgs);
+      const atual = Number(wrap.dataset.idx);
+      const dir = navBtn.classList.contains('next') ? 1 : -1;
+      const novo = (atual + dir + imgs.length) % imgs.length;
+      mostrarImagem(wrap, novo);
+    }
+  });
+
+  // monta o estilo (enquadramento, ajuste e zoom) de uma foto
+  function estiloImagem(f){
+    const foco = f.foco || 'var(--card-focus)';
+    return `object-fit:${f.ajuste || 'var(--card-fit)'}; object-position:${foco}; transform-origin:${foco}; --zoom:${f.zoom || 1}`;
+  }
+
+  function mostrarImagem(wrap, idx){
+    const fotos = JSON.parse(wrap.dataset.imgs);
+    const f = fotos[idx];
+    wrap.dataset.idx = idx;
+    const img = wrap.querySelector('img');
+    img.src = f.src;
+    img.style.cssText = estiloImagem(f);
+    wrap.style.background = f.fundo || '';
+    wrap.querySelectorAll('.img-dot').forEach((d,i) => d.classList.toggle('active', i === idx));
+  }
+
+  // Monta a lista de filtros: Destaques + cada categoria única
+  // (Favoritos agora tem sua própria página, veja favoritos.html)
   const categorias = [...new Set(PRODUCTS.map(p => p.categoria))];
   const filtros = ["Destaques", ...categorias];
   let filtroAtivo = "Destaques";
@@ -725,11 +1272,35 @@
       grid.innerHTML = `<p class="empty-msg">Nenhuma peça marcada como destaque ainda. Edite o campo "destaque" nos produtos.</p>`;
       return;
     }
+    const favoritos = getFavoritos();
     lista.forEach(p => {
       const card = document.createElement('div');
       card.className = 'card';
+      const isFav = favoritos.includes(p.id);
+      const imgs = ((p.imagens && p.imagens.length) ? p.imagens : [p.imagem]).map(i => {
+        const o = typeof i === 'string' ? { src: i } : i;
+        return {
+          src:    o.src,
+          foco:   o.foco   ?? p.foco,
+          ajuste: o.ajuste ?? p.ajuste,
+          zoom:   o.zoom   ?? p.zoom,
+          fundo:  o.fundo  ?? p.fundo
+        };
+      });
       card.innerHTML = `
-        <div class="img-wrap"><img src="${p.imagem}" alt="${p.nome}" loading="lazy"></div>
+        <div class="img-wrap" data-imgs='${JSON.stringify(imgs)}' data-idx="0"${imgs[0].fundo ? ` style="background:${imgs[0].fundo}"` : ''}>
+          <img src="${imgs[0].src}" alt="${p.nome}" loading="lazy" style="${estiloImagem(imgs[0])}">
+          ${imgs.length > 1 ? `
+            <button class="img-nav prev" aria-label="Foto anterior"></button>
+            <button class="img-nav next" aria-label="Próxima foto"></button>
+            <div class="img-dots">
+              ${imgs.map((_, i) => `<button class="img-dot ${i === 0 ? 'active' : ''}" data-idx="${i}" aria-label="Foto ${i + 1}"></button>`).join('')}
+            </div>
+          ` : ''}
+          <button class="fav-btn ${isFav ? 'active' : ''}" data-id="${p.id}" aria-label="Favoritar ${p.nome}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
         <div class="info">
           <div class="tag">${p.categoria}</div>
           <h3>${p.nome}</h3>
@@ -749,10 +1320,11 @@
     document.querySelectorAll('[data-filtro]').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.filtro === nome);
     });
-    const lista = nome === "Destaques"
-      ? PRODUCTS.filter(p => p.destaque)
+    const lista = nome === "Destaques" ? PRODUCTS.filter(p => p.destaque)
       : PRODUCTS.filter(p => p.categoria === nome);
     renderCards(lista);
+    // lembra a aba na URL (ex.: #brincos) para continuar nela ao recarregar a página
+    try{ history.replaceState(null, '', '#' + slugify(nome)); }catch(e){}
     if(rolarAte){
       document.getElementById('colecao').scrollIntoView({ behavior: 'smooth' });
     }
@@ -777,11 +1349,26 @@
     headerFilters.appendChild(navBtn);
   });
 
+  // se a URL tiver uma aba (ex.: #brincos), abre ela em vez de "Destaques"
+  const filtroDaUrl = filtros.find(n => '#' + slugify(n) === location.hash);
+  if(filtroDaUrl) filtroAtivo = filtroDaUrl;
   aplicarFiltro(filtroAtivo, false);
+
+  // abriu um link direto (#brincos) em vez de recarregar? então rola até a coleção
+  if(filtroDaUrl){
+    const nav = performance.getEntriesByType('navigation')[0];
+    if(!nav || nav.type !== 'reload'){
+      document.getElementById('colecao').scrollIntoView();
+    }
+  }
 
   document.getElementById('menu-toggle').addEventListener('click', () => {
     document.getElementById('main-nav').classList.toggle('open');
   });
+
+  // O botão de favoritos agora é um link direto para favoritos.html
+  // (o contador de favoritos abaixo continua atualizado normalmente)
+  atualizarContadorFavoritos();
 
   // ---------- tema claro / escuro ----------
   const THEME_KEY = 'aurea-tema';

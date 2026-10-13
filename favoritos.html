@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Favoritos - VYCK</title>
+<meta name="description" content="Suas peças favoritas na VYCK Acessórios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  :root{
+    --bg: #15120f;
+    --surface: #1c1712;
+    --surface-hover: #221c15;
+    --gold: #707070;
+    --gold-bright: #a8a9ad;
+    --cream: #f0e8db;
+    --muted: #9c9186;
+    --hairline: #332c22;
+    --header-bg: rgba(21,18,15,0.92);
+    --img-bg: #2a2a2f;
+  }
+
+  html[data-theme="light"]{
+    --bg: #faf6ee;
+    --surface: #f1e9d8;
+    --surface-hover: #ebe0c9;
+    --gold: #707070;
+    --gold-bright: #909090;
+    --cream: #2a2318;
+    --muted: #756a56;
+    --hairline: #ddceac;
+    --header-bg: rgba(250,246,238,0.92);
+    --img-bg: #e8e8eb;
+  }
+
+  html{ transition: background .3s ease; }
+
+  body{
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+
+  a { color: inherit; text-decoration: none; }
+
+  .diamond{
+    display:inline-block;
+    width:6px; height:6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  /* ---------- topo ---------- */
+  header{
+    position: fixed;
+    top:0; left:0; right:0;
+    z-index: 100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 24px;
+    padding: 22px 6vw;
+    background: var(--header-bg);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cream);
+    flex-shrink: 0;
+  }
+  .logo em{ font-style:normal; color: var(--gold); }
+
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color .25s ease;
+  }
+  .back-link:hover{ color: var(--gold); }
+  .back-link svg{ width:14px; height:14px; }
+
+  .header-controls{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    flex-shrink:0;
+  }
+
+  .theme-toggle{
+    background:none;
+    border: 1px solid var(--hairline);
+    width: 40px; height: 40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: var(--gold);
+    cursor:pointer;
+    flex-shrink:0;
+    transition: border-color .25s ease;
+  }
+  .theme-toggle:hover{ border-color: var(--gold); }
+  .theme-toggle svg{ width:18px; height:18px; }
+
+  /* ---------- cabeçalho de página ---------- */
+  .page-head{
+    padding: 160px 6vw 60px;
+    text-align:center;
+  }
+  .page-head .eyebrow{
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .page-head h1{
+    font-size: clamp(34px, 5vw, 54px);
+    color: var(--cream);
+  }
+  .page-head p{
+    max-width: 480px;
+    margin: 18px auto 0;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  section{ padding: 0 6vw 110px; }
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 44px 32px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .empty-msg{
+    text-align:center;
+    color: var(--muted);
+    font-size: 15px;
+    grid-column: 1 / -1;
+    padding: 40px 0;
+  }
+  .empty-msg a{
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+  }
+
+  .card{
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    transition: border-color .35s ease, transform .35s ease;
+  }
+  .card:hover{
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+  .card .img-wrap{
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--img-bg);
+  }
+  .fav-btn{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--hairline);
+    background: var(--surface);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor: pointer;
+    color: var(--cream);
+    z-index: 2;
+    transition: all .25s ease;
+  }
+  .fav-btn:hover{ border-color: var(--gold); color: var(--gold); }
+  .fav-btn svg{ width:18px; height:18px; transition: all .2s ease; }
+  .fav-btn.active{ color: var(--gold); border-color: var(--gold); }
+  .fav-btn.active svg{ fill: var(--gold); }
+  .card img{
+    width:100%; height:100%;
+    object-fit: cover;
+    display:block;
+    transition: transform .6s ease;
+    filter: saturate(0.92);
+  }
+  .card:hover img{ transform: scale(1.06); }
+
+  .card .info{ padding: 22px 24px 26px; }
+  .card .tag{
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .card h3{
+    font-size: 24px;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .card .price{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .card .contact-link{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--cream);
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 4px;
+    transition: color .25s ease, border-color .25s ease;
+  }
+  .card .contact-link:hover{
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+  .card .contact-link svg{ width:14px; height:14px; transition: transform .25s ease; }
+  .card .contact-link:hover svg{ transform: translateX(4px); }
+
+  /* ---------- rodapé ---------- */
+  footer{
+    text-align:center;
+    padding: 46px 6vw;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  footer .logo{ margin-bottom: 14px; }
+
+  /* ---------- botão flutuante whatsapp ---------- */
+  .float-wa{
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    width: 58px; height: 58px;
+    background: var(--gold);
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index: 200;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    transition: background .3s ease, transform .3s ease;
+  }
+  .float-wa:hover{ background: var(--gold-bright); transform: scale(1.06); }
+  .float-wa svg{ width:28px; height:28px; fill: var(--bg); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">VYC<em>K</em></div>
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Voltar para a coleção
+  </a>
+  <div class="header-controls">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro">
+      <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+    </button>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="eyebrow"><span class="diamond"></span>Suas peças<span class="diamond"></span></div>
+  <h1>Favoritos</h1>
+  <p>As peças que você guardou aqui. Clique no coração de uma peça em qualquer página para adicioná-la ou removê-la desta lista.</p>
+</div>
+
+<section>
+  <div class="grid" id="product-grid"></div>
+</section>
+
+<footer>
+  <div class="logo">VYC<em>K</em></div>
+  <p>&copy; <span id="year"></span> VYCK Acessórios. Todas as peças sujeitas a disponibilidade.</p>
+</footer>
+
+<a href="#" id="wa-float-btn" class="float-wa" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.85 9.85 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67c2.24 0 4.34.87 5.92 2.45a8.23 8.23 0 0 1 2.42 5.85c0 4.55-3.7 8.25-8.29 8.25a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.55 3.7-8.25 8.24-8.25M8.53 7.33c-.16 0-.43.06-.65.31c-.22.24-.86.84-.86 2.05c0 1.21.88 2.38 1 2.55c.12.16 1.7 2.72 4.2 3.71c2.08.83 2.5.66 2.95.62c.45-.04 1.45-.59 1.65-1.16c.2-.57.2-1.06.14-1.16c-.06-.1-.22-.16-.45-.28c-.24-.12-1.45-.72-1.68-.8c-.22-.08-.39-.12-.55.12c-.16.24-.63.8-.78.96c-.14.16-.29.18-.53.06c-.24-.12-1.02-.38-1.94-1.2c-.72-.64-1.2-1.44-1.35-1.68c-.14-.24-.02-.37.11-.49c.11-.11.24-.29.37-.43c.12-.15.16-.25.24-.41c.08-.17.04-.31-.02-.43c-.06-.12-.55-1.36-.77-1.85c-.19-.46-.4-.42-.55-.43c-.14 0-.31 0-.48 0z"/></svg>
+</a>
+
+<script>
+
+  /* ============================================================
+     IMPORTANTE: esta lista PRODUCTS também existe em index.html.
+     Se adicionar, remover ou editar peças aqui, faça o mesmo lá
+     para manter as duas páginas em sincronia.
+     ============================================================ */
+
+  const WHATSAPP_NUMBER = "553198656613";
+
+  const PRODUCTS = [
+
+      // Destaques:
+    {
+      nome: "Colar Borboleta Cravejada",
+      categoria: "Colares",
+      preco: "R$ 35,00",
+      destaque: true,
+      imagem: "colares/colar-borboleta-cravejada.jpg"
+    },
+
+    // Colares:
+    {
+      nome: "Colar Borboleta Cravejada 2",
+      categoria: "Colares",
+      preco: "R$ 35,00",
+      destaque: false,
+      imagem: "colares/colar-borboleta-cravejada2.jpg"
+    },
+    {
+      nome: "Conjunto Perolado",
+      categoria: "Colares",
+      preco: "R$ 40,00",
+      destaque: false,
+      imagem: "colares/colar-conjunto-perolado.jpg"
+    },
+    {
+      nome: "Colar Corrente Fina",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      destaque: false,
+      imagem: "colares/colar-corrente-fina.jpg"
+    },
+    {
+      nome: "Colar Corrente Larga",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      destaque: false,
+      imagem: "colares/colar-corrente-larga.jpg"
+    },
+    {
+      nome: "Colar Duo Coração",
+      categoria: "Colares",
+      preco: "R$ 40,00",
+      destaque: false,
+      imagem: "colares/colar-duo-coracao.jpg"
+    },
+    {
+      nome: "Colar Gargantilha Borboletas",
+      categoria: "Colares",
+      preco: "R$ 36,00",
+      destaque: false,
+      imagem: "colares/colar-gargantilha-borboletas.jpg"
+    },
+    {
+      nome: "Colar Pérolas",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      destaque: false,
+      imagem: "colares/colar-perolas.jpg"
+    },
+    {
+      nome: "Colar Pérola Única",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      destaque: false,
+      imagem: "colares/colar-perola-unica.jpg"
+    },
+    // Brincos:
+    {
+      nome: "Brinco Arame Farpado",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagem: "brincos/brinco-arame.jpg"
+    },
+    {
+      nome: "Brinco Aranha",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      destaque: true,
+      imagem: "brincos/brinco-aranha.jpg"
+    },
+    {
+      nome: "Brinco Coração",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagem: "brincos/brinco-coracao.jpg"
+    },
+    // Anéis:
+    {
+      nome: "Anel Arame Farpado",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      destaque: false,
+      imagem: "aneis/anel-arame.jpg"
+    },
+    {
+      nome: "Anel Aranha",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      destaque: true,
+      imagem: "aneis/anel-aranha.jpg"
+    },
+    {
+      nome: "Anel Borboleta",
+      categoria: "Anéis",
+      preco: "R$ 17,00",
+      destaque: false,
+      imagem: "aneis/anel-borboleta.jpg"
+    },
+    // Pulseiras:
+    {
+      nome: "Anel Duplo Trançado",
+      categoria: "Pulseiras",
+      preco: "R$ 179,00",
+      destaque: false,
+      imagem: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80"
+    }
+  ];
+
+  /* ============================================================
+     Não é necessário editar nada abaixo desta linha
+     ============================================================ */
+
+  function waLink(productName){
+    const msg = encodeURIComponent(`Olá! Tenho interesse na peça "${productName}". Ainda está disponível?`);
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+  }
+
+  const FAV_KEY = 'vyck-favoritos';
+
+  function slugify(str){
+    return str.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  }
+  PRODUCTS.forEach(p => { if(!p.id) p.id = slugify(p.nome); });
+
+  function getFavoritos(){
+    try{ return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }
+    catch(e){ return []; }
+  }
+  function salvarFavoritos(lista){
+    localStorage.setItem(FAV_KEY, JSON.stringify(lista));
+  }
+  function toggleFavorito(id){
+    let favoritos = getFavoritos();
+    favoritos = favoritos.includes(id)
+      ? favoritos.filter(f => f !== id)
+      : [...favoritos, id];
+    salvarFavoritos(favoritos);
+    render();
+  }
+
+  const grid = document.getElementById('product-grid');
+
+  grid.addEventListener('click', (e) => {
+    const btn = e.target.closest('.fav-btn');
+    if(!btn) return;
+    toggleFavorito(btn.dataset.id);
+  });
+
+  function render(){
+    const favoritos = getFavoritos();
+    const lista = PRODUCTS.filter(p => favoritos.includes(p.id));
+    grid.innerHTML = "";
+    if(lista.length === 0){
+      grid.innerHTML = `<p class="empty-msg">Você ainda não favoritou nenhuma peça. Clique no coração nas peças que quiser guardar aqui — <a href="index.html">voltar para a coleção</a>.</p>`;
+      return;
+    }
+    lista.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="img-wrap">
+          <img src="${p.imagem}" alt="${p.nome}" loading="lazy">
+          <button class="fav-btn active" data-id="${p.id}" aria-label="Remover ${p.nome} dos favoritos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+        <div class="info">
+          <div class="tag">${p.categoria}</div>
+          <h3>${p.nome}</h3>
+          <div class="price">${p.preco}</div>
+          <a class="contact-link" href="${waLink(p.nome)}" target="_blank" rel="noopener">
+            Consultar disponibilidade
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  render();
+
+  // ---------- tema claro / escuro ----------
+  const THEME_KEY = 'aurea-tema';
+  const themeIcon = document.getElementById('theme-icon');
+
+  const SUN_PATH = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+  const MOON_PATH = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+  function aplicarTema(tema){
+    document.documentElement.setAttribute('data-theme', tema);
+    themeIcon.innerHTML = tema === 'light' ? SUN_PATH : MOON_PATH;
+    localStorage.setItem(THEME_KEY, tema);
+  }
+
+  const temaSalvo = localStorage.getItem(THEME_KEY);
+  const preferenciaSistema = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  aplicarTema(temaSalvo || preferenciaSistema);
+
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const atual = document.documentElement.getAttribute('data-theme');
+    aplicarTema(atual === 'light' ? 'dark' : 'light');
+  });
+
+  document.getElementById('wa-float-btn').href = `https://wa.me/${WHATSAPP_NUMBER}`;
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
