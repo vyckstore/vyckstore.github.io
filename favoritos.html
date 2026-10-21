@@ -10,6 +10,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 
+  :root{
+    --card-ratio: 4/5;
+    --card-fit: cover;
+    --card-focus: center;
+  }
+
   * { margin:0; padding:0; box-sizing:border-box; }
 
   :root{
@@ -179,7 +185,7 @@
   }
   .card .img-wrap{
     position: relative;
-    aspect-ratio: 4/5;
+    aspect-ratio: var(--card-ratio);
     overflow: hidden;
     background: var(--img-bg);
   }
@@ -206,12 +212,14 @@
   .fav-btn.active svg{ fill: var(--gold); }
   .card img{
     width:100%; height:100%;
-    object-fit: cover;
+    object-fit: var(--card-fit);
+    object-position: var(--card-focus);
     display:block;
+    transform: scale(var(--zoom, 1));
     transition: transform .6s ease;
     filter: saturate(0.92);
   }
-  .card:hover img{ transform: scale(1.06); }
+  .card:hover img{ transform: scale(calc(var(--zoom, 1) * 1.06)); }
 
   .card .info{ padding: 22px 24px 26px; }
   .card .tag{
@@ -315,137 +323,17 @@
   <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.85 9.85 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67c2.24 0 4.34.87 5.92 2.45a8.23 8.23 0 0 1 2.42 5.85c0 4.55-3.7 8.25-8.29 8.25a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.55 3.7-8.25 8.24-8.25M8.53 7.33c-.16 0-.43.06-.65.31c-.22.24-.86.84-.86 2.05c0 1.21.88 2.38 1 2.55c.12.16 1.7 2.72 4.2 3.71c2.08.83 2.5.66 2.95.62c.45-.04 1.45-.59 1.65-1.16c.2-.57.2-1.06.14-1.16c-.06-.1-.22-.16-.45-.28c-.24-.12-1.45-.72-1.68-.8c-.22-.08-.39-.12-.55.12c-.16.24-.63.8-.78.96c-.14.16-.29.18-.53.06c-.24-.12-1.02-.38-1.94-1.2c-.72-.64-1.2-1.44-1.35-1.68c-.14-.24-.02-.37.11-.49c.11-.11.24-.29.37-.43c.12-.15.16-.25.24-.41c.08-.17.04-.31-.02-.43c-.06-.12-.55-1.36-.77-1.85c-.19-.46-.4-.42-.55-.43c-.14 0-.31 0-.48 0z"/></svg>
 </a>
 
+<script src="produtos.js"></script>
 <script>
 
   /* ============================================================
-     IMPORTANTE: esta lista PRODUCTS também existe em index.html.
-     Se adicionar, remover ou editar peças aqui, faça o mesmo lá
-     para manter as duas páginas em sincronia.
+     As peças (PRODUCTS) ficam em produtos.js, usado também
+     por index.html. Edite a lista lá.
      ============================================================ */
 
   const WHATSAPP_NUMBER = "553198656613";
 
-  const PRODUCTS = [
-
-      // Destaques:
-    {
-      nome: "Colar Borboleta Cravejada",
-      categoria: "Colares",
-      preco: "R$ 35,00",
-      destaque: true,
-      imagem: "colares/colar-borboleta-cravejada.jpg"
-    },
-
-    // Colares:
-    {
-      nome: "Colar Borboleta Cravejada 2",
-      categoria: "Colares",
-      preco: "R$ 35,00",
-      destaque: false,
-      imagem: "colares/colar-borboleta-cravejada2.jpg"
-    },
-    {
-      nome: "Conjunto Perolado",
-      categoria: "Colares",
-      preco: "R$ 40,00",
-      destaque: false,
-      imagem: "colares/colar-conjunto-perolado.jpg"
-    },
-    {
-      nome: "Colar Corrente Fina",
-      categoria: "Colares",
-      preco: "R$ 30,00",
-      destaque: false,
-      imagem: "colares/colar-corrente-fina.jpg"
-    },
-    {
-      nome: "Colar Corrente Larga",
-      categoria: "Colares",
-      preco: "R$ 30,00",
-      destaque: false,
-      imagem: "colares/colar-corrente-larga.jpg"
-    },
-    {
-      nome: "Colar Duo Coração",
-      categoria: "Colares",
-      preco: "R$ 40,00",
-      destaque: false,
-      imagem: "colares/colar-duo-coracao.jpg"
-    },
-    {
-      nome: "Colar Gargantilha Borboletas",
-      categoria: "Colares",
-      preco: "R$ 36,00",
-      destaque: false,
-      imagem: "colares/colar-gargantilha-borboletas.jpg"
-    },
-    {
-      nome: "Colar Pérolas",
-      categoria: "Colares",
-      preco: "R$ 30,00",
-      destaque: false,
-      imagem: "colares/colar-perolas.jpg"
-    },
-    {
-      nome: "Colar Pérola Única",
-      categoria: "Colares",
-      preco: "R$ 30,00",
-      destaque: false,
-      imagem: "colares/colar-perola-unica.jpg"
-    },
-    // Brincos:
-    {
-      nome: "Brinco Arame Farpado",
-      categoria: "Brincos",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagem: "brincos/brinco-arame.jpg"
-    },
-    {
-      nome: "Brinco Aranha",
-      categoria: "Brincos",
-      preco: "R$ 20,00",
-      destaque: true,
-      imagem: "brincos/brinco-aranha.jpg"
-    },
-    {
-      nome: "Brinco Coração",
-      categoria: "Brincos",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagem: "brincos/brinco-coracao.jpg"
-    },
-    // Anéis:
-    {
-      nome: "Anel Arame Farpado",
-      categoria: "Anéis",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagem: "aneis/anel-arame.jpg"
-    },
-    {
-      nome: "Anel Aranha",
-      categoria: "Anéis",
-      preco: "R$ 20,00",
-      destaque: true,
-      imagem: "aneis/anel-aranha.jpg"
-    },
-    {
-      nome: "Anel Borboleta",
-      categoria: "Anéis",
-      preco: "R$ 17,00",
-      destaque: false,
-      imagem: "aneis/anel-borboleta.jpg"
-    },
-    // Pulseiras:
-    {
-      nome: "Anel Duplo Trançado",
-      categoria: "Pulseiras",
-      preco: "R$ 179,00",
-      destaque: false,
-      imagem: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80"
-    }
-  ];
+  // As peças vêm do arquivo produtos.js (o mesmo usado por index.html).
 
   /* ============================================================
      Não é necessário editar nada abaixo desta linha
@@ -490,6 +378,12 @@
     toggleFavorito(btn.dataset.id);
   });
 
+  // monta o estilo (enquadramento, ajuste e zoom) de uma foto — igual ao index.html
+  function estiloImagem(f){
+    const foco = f.foco || 'var(--card-focus)';
+    return `object-fit:${f.ajuste || 'var(--card-fit)'}; object-position:${foco}; transform-origin:${foco}; --zoom:${f.zoom || 1}`;
+  }
+
   function render(){
     const favoritos = getFavoritos();
     const lista = PRODUCTS.filter(p => favoritos.includes(p.id));
@@ -499,11 +393,15 @@
       return;
     }
     lista.forEach(p => {
+      const primeira = (p.imagens && p.imagens.length) ? p.imagens[0] : p.imagem;
+      const o = typeof primeira === 'string' ? { src: primeira } : primeira;
+      const foto = { src: o.src, foco: o.foco ?? p.foco, ajuste: o.ajuste ?? p.ajuste,
+                     zoom: o.zoom ?? p.zoom, fundo: o.fundo ?? p.fundo };
       const card = document.createElement('div');
       card.className = 'card';
       card.innerHTML = `
-        <div class="img-wrap">
-          <img src="${p.imagem}" alt="${p.nome}" loading="lazy">
+        <div class="img-wrap"${foto.fundo ? ` style="background:${foto.fundo}"` : ''}>
+          <img src="${foto.src}" alt="${p.nome}" loading="lazy" style="${estiloImagem(foto)}">
           <button class="fav-btn active" data-id="${p.id}" aria-label="Remover ${p.nome} dos favoritos">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>

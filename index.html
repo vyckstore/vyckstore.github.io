@@ -625,7 +625,7 @@
 <section id="colecao">
   <div class="section-head">
     <div class="eyebrow"><span class="diamond"></span>Coleção<span class="diamond"></span></div>
-    <h2>Peças em destaque</h2>
+    <h2>Peças Disponíveis</h2>
   </div>
 
   <div class="filter-bar" id="filter-bar"></div>
@@ -672,14 +672,14 @@
   <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.85 9.85 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67c2.24 0 4.34.87 5.92 2.45a8.23 8.23 0 0 1 2.42 5.85c0 4.55-3.7 8.25-8.29 8.25a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.55 3.7-8.25 8.24-8.25M8.53 7.33c-.16 0-.43.06-.65.31c-.22.24-.86.84-.86 2.05c0 1.21.88 2.38 1 2.55c.12.16 1.7 2.72 4.2 3.71c2.08.83 2.5.66 2.95.62c.45-.04 1.45-.59 1.65-1.16c.2-.57.2-1.06.14-1.16c-.06-.1-.22-.16-.45-.28c-.24-.12-1.45-.72-1.68-.8c-.22-.08-.39-.12-.55.12c-.16.24-.63.8-.78.96c-.14.16-.29.18-.53.06c-.24-.12-1.02-.38-1.94-1.2c-.72-.64-1.2-1.44-1.35-1.68c-.14-.24-.02-.37.11-.49c.11-.11.24-.29.37-.43c.12-.15.16-.25.24-.41c.08-.17.04-.31-.02-.43c-.06-.12-.55-1.36-.77-1.85c-.19-.46-.4-.42-.55-.43c-.14 0-.31 0-.48 0z"/></svg>
 </a>
 
+<script src="produtos.js"></script>
 <script>
 
   /* ============================================================
      ÁREA DE EDIÇÃO — troque os valores abaixo pelos seus dados
 
-     IMPORTANTE: a lista PRODUCTS também existe em favoritos.html.
-     Se adicionar, remover ou editar peças aqui, faça o mesmo lá
-     para manter as duas páginas em sincronia.
+     As peças (PRODUCTS) ficam em produtos.js, usado também
+     por favoritos.html. Edite a lista lá.
      ============================================================ */
 
   // Seu número de WhatsApp com código do país, sem espaços/símbolos
@@ -689,442 +689,8 @@
   // Seu usuário do Instagram (sem o @)
   const INSTAGRAM_USER = "_v.yck";
 
-  // Suas peças. Adicione, remova ou edite os itens abaixo.
-  // "imagem" pode ser um link de foto sua (ex: hospedada no imgur, ou dentro
-  // da pasta do site, tipo "imagens/colar-1.jpg")
-  //
-  // Quer colocar MAIS DE UMA FOTO no mesmo produto? Troque "imagem" (singular)
-  // por "imagens" (plural), com uma lista de fotos entre colchetes. Exemplo:
-  //   {
-  //     nome: "Colar Pérolas",
-  //     categoria: "Colares",
-  //     preco: "R$ 30,00",
-  //     destaque: false,
-  //     imagens: ["colares/colar-perolas.jpg", "colares/colar-perolas-2.jpg"]
-  //   }
-  // O card mostrará bolinhas para navegar entre as fotos. Pode usar quantas
-  // fotos quiser (2, 3, 4...). Se usar "imagens", pode remover a linha "imagem".
-  //
-  // Cada foto da lista também pode ser um objeto com ajustes próprios:
-  //   imagens: [
-  //     { src: "pulseiras/foto1.jpg", foco: "50% 20%", ajuste: "contain", zoom: 1 },
-  //     "pulseiras/foto2.jpg"
-  //   ]
-  // O que for escrito direto no produto vale como padrão para as fotos
-  // que não tiverem o próprio valor.
-  //
-  // AJUSTES OPCIONAIS DE ENQUADRAMENTO (por peça — se não escrever nada,
-  // a peça segue o padrão definido no CSS lá em cima):
-  //   foco:   parte da foto que fica visível. Ex: "top", "bottom", "50% 30%"
-  //   ajuste: "cover" (preenche e corta) ou "contain" (foto inteira, sem cortar)
-  //   zoom:   ampliação da foto. 1 = normal, 1.2 = +20%, 1.5 = +50%,
-  //           0.8 = reduz (só faz sentido com ajuste: "contain")
-  //           O zoom cresce a partir do ponto definido em "foco".
-  //   fundo:  cor das margens quando a foto não preenche a moldura.
-  //           Ex: "#000" (preto), "#fff" (branco). Sem isso, usa o cinza padrão.
-  //   Exemplo:
-  //     foco: "50% 40%",
-  //     zoom: 1.3,
-  //     fundo: "#000"
-  const PRODUCTS = [
-
-    // Destaques:
-
-
-    // Colares:
-    {
-      nome: "Colar Cruz Tribal",
-      categoria: "Colares",
-      preco: "R$ 45,00",
-      destaque: true,
-      imagem: "colares/cruz-de-prata.jpg",
-      foco: "50% 70%",
-      zoom: 1.4
-    },
-    {
-      nome: "Colar Cruz Invertida",
-      categoria: "Colares",
-      preco: "R$ 35,00",
-      destaque: true,
-      imagem: "colares/cruz-invertida.jpg",
-      foco: "60% 85%",
-      zoom: 1.3
-    },
-    {
-      nome: "Colar Borboleta Cravejada",
-      categoria: "Colares",
-      preco: "R$ 35,00",
-      destaque: true,
-      imagem: "colares/colar-borboleta-cravejada.jpg"
-    },
-    {
-      nome: "Colar Borboleta Monarca",
-      categoria: "Colares",
-      preco: "R$ 35,00",
-      destaque: false,
-      imagem: "colares/colar-borboleta-cravejada2.jpg"
-    },
-
-    {
-      nome: "Conjunto Lua Cheia",
-      categoria: "Colares",
-      preco: "R$ 50,00",
-      destaque: false,
-      imagem: "colares/colar-conjunto-perolado.jpg"
-    },
-    {
-      nome: "Colar Fio de Prata",
-      categoria: "Colares",
-      preco: "R$ 30,00",
-      destaque: false,
-      imagem: "colares/colar-corrente-fina.jpg",
-      foco: "20% 65%",
-      zoom: 1.2
-    },
-    {
-      nome: "Colar Elo Grosso",
-      categoria: "Colares",
-      preco: "R$ 30,00",
-      destaque: false,
-      imagem: "colares/colar-corrente-larga.jpg"
-    },
-    {
-      nome: "Colar Duo Coração",
-      categoria: "Colares",
-      preco: "R$ 50,00",
-      destaque: false,
-      imagem: "colares/colar-duo-coracao.jpg"
-    },
-    {
-      nome: "Colar Gargantilha de Borboleta",
-      categoria: "Colares",
-      preco: "R$ 36,00",
-      destaque: false,
-      imagem: "colares/colar-gargantilha-borboletas.jpg"
-    },
-    {
-      nome: "Colar Pérolado",
-      categoria: "Colares",
-      preco: "R$ 30,00",
-      destaque: false,
-      imagem: "colares/colar-perolas.jpg"
-    },
-    {
-      nome: "Colar Pérola Solitária",
-      categoria: "Colares",
-      preco: "R$ 30,00",
-      destaque: false,
-      imagem: "colares/colar-perola-unica.jpg"
-    },
-    {
-      nome: "Colar Estrela Solitária",
-      categoria: "Colares",
-      preco: "R$ 30,00",
-      destaque: false,
-      imagem: "colares/IMG_8408.JPG"
-    },
-    {
-      nome: "Colar Slim",
-      categoria: "Colares",
-      preco: "R$ 30,00",
-      destaque: false,
-      imagem: "colares/IMG_8410.JPG"
-    },
-    {
-      nome: "Colar Mini Borboleta",
-      categoria: "Colares",
-      preco: "R$ 30,00",
-      destaque: false,
-      imagem: "colares/IMG_8406.JPG"
-    },
-    // {nome: "Colar Pérola de Prata", categoria: "Colares", preco: "R$ 30,00", destaque: false, imagem: "colares/IMG_8422.JPG"},
-
-    // Brincos:
-    {
-      nome: "Brinco Farpado",
-      categoria: "Brincos",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagem: "brincos/brinco-arame.jpg",
-      foco: "43% 18%",
-      zoom: 1.4
-      
-    },
-    {
-      nome: "Brinco Aranha",
-      categoria: "Brincos",
-      preco: "R$ 20,00",
-      destaque: true,
-      imagem: "brincos/brinco-aranha.jpg",
-      foco: "43% 20%",
-      zoom: 1.3
-      
-    },
-    {
-      nome: "Brinco Coração",
-      categoria: "Brincos",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagem: "brincos/brinco-coracao.jpg",
-      foco: "30% 23%",          // opcional
-      zoom: 1.4,                 // opcional (1 = normal; ex: 1.3 para ampliar)
-      fundo: "#000" 
-    },
-    {
-      nome: "Brinco Caveira",
-      categoria: "Brincos",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagem: "brincos/IMG_8483.JPG"
-    },
-    {
-      nome: "Brinco Asas de Morcego",
-      categoria: "Brincos",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagem: "brincos/IMG_8473.JPG",
-      foco: "45% 50%",          // opcional
-      ajuste: "scale-down",    // opcional
-      zoom: 1.8,                 // opcional (1 = normal; ex: 1.3 para ampliar)
-      fundo: "#000"            // opcional (cor das margens sobrando)
-    },
-    {
-      nome: "Brinco Aranha de Rubi",
-      categoria: "Brincos",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagem: "brincos/IMG_8479.JPG"
-    },
-    {
-      nome: "Brinco Coração de Ônix",
-      categoria: "Brincos",
-      preco: "R$ 10,00",
-      destaque: false,
-      imagem: "brincos/IMG_8484.JPG"
-    },
-    {
-      nome: "Brinco Pérola Clássica",
-      categoria: "Brincos",
-      preco: "R$ 12,00",
-      destaque: false,
-      imagem: "brincos/IMG_8486.JPG"
-    },
-    {
-      nome: "Brinco Cubo",
-      categoria: "Brincos",
-      preco: "R$ 10,00",
-      destaque: false,
-      imagem: "brincos/IMG_8490.JPG",
-      foco: "40% 50%",          // opcional
-      zoom: 1.8,                 // opcional (1 = normal; ex: 1.3 para ampliar)
-      fundo: "#000" 
-    },
-    // {nome: "Brinco Slim", categoria: "Brincos", preco: "R$ 10,00", destaque: false, imagem: "brincos/IMG_8491.JPG", foco: "44% 50%", ajuste: "scale-down", zoom: 1.8, fundo: "#000"},
-
-
-
-    // Anéis:
-    {
-      nome: "Anel Farpado",
-      categoria: "Anéis",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagem: "aneis/anel-arame.jpg",
-      foco: "45% 45%",
-      zoom: 2.0
-    },
-   // {nome: "Anel Aranha", categoria: "Anéis", preco: "R$ 20,00", destaque: true,
-   //    imagem: "aneis/anel-aranha.jpg", foco: "33% 45%", zoom: 2.0 },
-   // {nome: "Anel Monarca", categoria: "Anéis", preco: "R$ 17,00", destaque: false, imagem: "aneis/anel-borboleta.jpg"},
-   
-  {nome: "Anel Morcego", categoria: "Anéis", preco: "R$ 17,00", destaque: false,
-  imagem: "aneis/IMG_8308.JPG", foco: "44% 55%", zoom: 2.0 },
-   
-  //  {nome: "Anel Bola Oito", categoria: "Anéis", preco: "R$ 20,00", destaque: false, imagem: "aneis/IMG_8329.JPG"},
-    
-    {
-      nome: "Anel Elo Largo",
-      categoria: "Anéis",
-      preco: "R$ 15,00",
-      destaque: false,
-      imagem: "aneis/IMG_8330.JPG"
-    },
-   // {nome: "Anel Monarca Largo", categoria: "Anéis", preco: "R$ 17,00",
-   //  destaque: false, imagem: "aneis/IMG_8333.JPG"},
-   // {nome: "Anel Elo", categoria: "Anéis", preco: "R$ 15,00", destaque: false, imagem: "aneis/IMG_8336.JPG"},
-    
-   // {nome: "Anel Serpente", categoria: "Anéis", preco: "R$ 17,00", destaque: false, imagem: "aneis/IMG_8343.JPG"},
-    
-    {
-      nome: "Anel Love Letter",
-      categoria: "Anéis",
-      preco: "R$ 15,00",
-      destaque: false,
-      imagem: "aneis/IMG_8349.JPG"
-    },
-    {
-      nome: "Anel Coroa Negra",
-      categoria: "Anéis",
-      preco: "R$ 15,00",
-      destaque: false,
-      imagem: "aneis/IMG_8351.JPG"
-    },
-    {
-      nome: "Anel Caveira",
-      categoria: "Anéis",
-      preco: "R$ 20,00",
-      destaque: true,
-      imagem: "aneis/IMG_8355.JPG"
-    },
-    {
-      nome: "Anel Ônix",
-      categoria: "Anéis",
-      preco: "R$ 15,00",
-      destaque: false,
-      imagem: "aneis/IMG_8356.JPG"
-    },
-    {
-      nome: "Anel Angel",
-      categoria: "Anéis",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagem: "aneis/IMG_8361.JPG"
-    },
-    // {nome: "Anel Coração Entrelaçado", categoria: "Anéis", preco: "R$ 17,00", destaque: false, imagem: "aneis/IMG_8366.JPG"},
-   
-    // {nome: "Anel Girassol", categoria: "Anéis", preco: "R$ 17,00", destaque: false, imagem: "aneis/IMG_8367.JPG"},
-    
-    {
-      nome: "Anel Yin Yang",
-      categoria: "Anéis",
-      preco: "R$ 17,00",
-      destaque: false,
-      imagem: "aneis/IMG_8369.JPG"
-    },
-    {
-      nome: "Anel Filigrama",
-      categoria: "Anéis",
-      preco: "R$ 13,00",
-      destaque: false,
-      imagem: "aneis/IMG_8337.JPG"
-    },
-    {
-      nome: "Anel Ondas",
-      categoria: "Anéis",
-      preco: "R$ 13,00",
-      destaque: false,
-      imagem: "aneis/IMG_8342.JPG"
-    },
-    {
-      nome: "Anel Folhas",
-      categoria: "Anéis",
-      preco: "R$ 13,00",
-      destaque: false,
-      imagem: "aneis/IMG_8348.JPG"
-    },
-    // {nome: "Anel Trança", categoria: "Anéis", preco: "R$ 13,00", destaque: false, imagem: "aneis/IMG_8360.JPG"},
-    
-    {
-      nome: "Anel Pontilhado",
-      categoria: "Anéis",
-      preco: "R$ 13,00",
-      destaque: false,
-      imagem: "aneis/IMG_8364.JPG"
-    },
-    {
-      nome: "Anel Arabesco",
-      categoria: "Anéis",
-      preco: "R$ 13,00",
-      destaque: false,
-      imagem: "aneis/IMG_8370.JPG"
-    },
-
-    // Pulseiras:
-    {
-      nome: "Pulseira Lisa",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagens: [
-        { src: "pulseiras/IMG_8439.JPG", foco: "55% 90%", ajuste: "contain", zoom: 2.3},
-        { src: "pulseiras/IMG_8440.JPG", foco: "60% 90%", ajuste: "contain", zoom: 2.3 }
-      ]
-      
-    },
-    {
-      nome: "Pulseira Trançada",
-      categoria: "Pulseiras",
-      preco: "R$ 25,00",
-      destaque: false,
-      imagens: ["pulseiras/IMG_8437.JPG", 
-      { src: "pulseiras/IMG_8441.JPG", foco: "60% 90%", ajuste: "contain", zoom: 2.3 }
-      ]
-    },
-    {
-      nome: "Pulseira Esferas",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagens: ["pulseiras/IMG_8461.JPG", "pulseiras/IMG_8460.JPG"]
-    },
-    {
-      nome: "Pulseira Cordame",
-      categoria: "Pulseiras",
-      preco: "R$ 25,00",
-      destaque: false,
-      imagens: ["pulseiras/IMG_8442.JPG", "pulseiras/IMG_8443.JPG"]
-    },
-    {
-      nome: "Pulseira Elo Quadrado",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagens: ["pulseiras/IMG_8446.JPG", "pulseiras/IMG_8447.JPG"]
-    },
-    {
-      nome: "Pulseira Fio Fino",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagens: ["pulseiras/IMG_8449.JPG", "pulseiras/IMG_8448.JPG"]
-    },
-    {
-      nome: "Pulseira Trançada Fina",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagens: ["pulseiras/IMG_8455.JPG", "pulseiras/IMG_8454.JPG"]
-    },
-    {
-      nome: "Pulseira Elo Largo",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagens: ["pulseiras/IMG_8457.JPG", "pulseiras/IMG_8456.JPG"]
-    },
-    {
-      nome: "Pulseira Pérolas de Prata",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagens: ["pulseiras/IMG_8458.JPG", "pulseiras/IMG_8459.JPG"]
-    },
-    {
-      nome: "Pulseira Elo Largo",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagens: ["pulseiras/IMG_8463.JPG", "pulseiras/IMG_8462.JPG"]
-    },
-    {
-      nome: "Pulseira Ítalica",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      destaque: false,
-      imagens: ["pulseiras/IMG_8467.JPG", "pulseiras/IMG_8468.JPG"]
-    },
-
-  ];
+  // As peças ficam no arquivo produtos.js (compartilhado com favoritos.html).
+  // Para adicionar, remover ou editar peças, edite SOMENTE o produtos.js.
 
   /* ============================================================
      Não é necessário editar nada abaixo desta linha
@@ -1213,16 +779,16 @@
     wrap.querySelectorAll('.img-dot').forEach((d,i) => d.classList.toggle('active', i === idx));
   }
 
-  // Monta a lista de filtros: Destaques + cada categoria única
+  // Monta a lista de filtros: novidades + cada categoria única
   // (Favoritos agora tem sua própria página, veja favoritos.html)
   const categorias = [...new Set(PRODUCTS.map(p => p.categoria))];
-  const filtros = ["Destaques", ...categorias];
-  let filtroAtivo = "Destaques";
+  const filtros = ["novidades", ...categorias];
+  let filtroAtivo = "novidades";
 
   function renderCards(lista){
     grid.innerHTML = "";
     if(lista.length === 0){
-      grid.innerHTML = `<p class="empty-msg">Nenhuma peça marcada como destaque ainda. Edite o campo "destaque" nos produtos.</p>`;
+      grid.innerHTML = `<p class="empty-msg">Nenhuma peça marcada como novidade ainda. Edite o campo "novidade" nos produtos.</p>`;
       return;
     }
     const favoritos = getFavoritos();
@@ -1273,7 +839,7 @@
     document.querySelectorAll('[data-filtro]').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.filtro === nome);
     });
-    const lista = nome === "Destaques" ? PRODUCTS.filter(p => p.destaque)
+    const lista = nome === "novidades" ? PRODUCTS.filter(p => p.novidade)
       : PRODUCTS.filter(p => p.categoria === nome);
     renderCards(lista);
     // lembra a aba na URL (ex.: #brincos) para continuar nela ao recarregar a página
@@ -1302,7 +868,7 @@
     headerFilters.appendChild(navBtn);
   });
 
-  // se a URL tiver uma aba (ex.: #brincos), abre ela em vez de "Destaques"
+  // se a URL tiver uma aba (ex.: #brincos), abre ela em vez de "novidades"
   const filtroDaUrl = filtros.find(n => '#' + slugify(n) === location.hash);
   if(filtroDaUrl) filtroAtivo = filtroDaUrl;
   aplicarFiltro(filtroAtivo, false);
