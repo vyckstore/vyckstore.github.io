@@ -356,6 +356,48 @@
 
     // Pulseiras:
     {
+      nome: "Bracelete Estrela Única",
+      categoria: "Pulseiras",
+      preco: "R$ 30,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122923765.jpg"
+    },
+    {
+      nome: "Bracelete Fio de Prata",
+      categoria: "Pulseiras",
+      preco: "R$ 25,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122936486.jpg"
+    },
+    {
+      nome: "Bracelete Argento",
+      categoria: "Pulseiras",
+      preco: "R$ 30,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122801238.jpg"
+    },
+    {
+      nome: "Bracelete Serena",
+      categoria: "Pulseiras",
+      preco: "R$ 25,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122821316.jpg"
+    },
+    {
+      nome: "Bracelete Clássico",
+      categoria: "Pulseiras",
+      preco: "R$ 25,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122908121.jpg"
+    },
+    {
+      nome: "Bracelete Lunar",
+      categoria: "Pulseiras",
+      preco: "R$ 30,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122742429.jpg"
+    },
+    {
       nome: "Pulseira Lisa",
       categoria: "Pulseiras",
       preco: "R$ 20,00",
