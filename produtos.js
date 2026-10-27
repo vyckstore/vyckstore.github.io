@@ -69,7 +69,7 @@
       nome: "Colar Borboleta Cravejada",
       categoria: "Colares",
       preco: "R$ 35,00",
-      novidade: true,
+      novidade: false,
       imagem: "colares/colar-borboleta-cravejada.jpg"
     },
     {
@@ -169,7 +169,7 @@
       nome: "Brinco Aranha",
       categoria: "Brincos",
       preco: "R$ 20,00",
-      novidade: true,
+      novidade: false,
       imagem: "brincos/brinco-aranha.jpg",
       foco: "43% 20%",
       zoom: 1.3
@@ -288,7 +288,7 @@
       nome: "Anel Caveira",
       categoria: "Anéis",
       preco: "R$ 20,00",
-      novidade: true,
+      novidade: false,
       imagem: "aneis/IMG_8355.JPG"
     },
     {
@@ -360,42 +360,49 @@
       categoria: "Pulseiras",
       preco: "R$ 30,00",
       novidade: true,
-      imagem: "pulseiras/IMG_20261027_122923765.jpg"
+      imagem: "pulseiras/IMG_20261027_122923765.jpg",
+      foco: "50% 70%"
     },
     {
       nome: "Bracelete Fio de Prata",
       categoria: "Pulseiras",
       preco: "R$ 25,00",
       novidade: true,
-      imagem: "pulseiras/IMG_20261027_122936486.jpg"
+      imagem: "pulseiras/IMG_20261027_122936486.jpg",
+      foco: "50% 40%"
     },
     {
       nome: "Bracelete Argento",
       categoria: "Pulseiras",
       preco: "R$ 30,00",
       novidade: true,
-      imagem: "pulseiras/IMG_20261027_122801238.jpg"
+      imagem: "pulseiras/IMG_20261027_122801238.jpg",
+      foco: "50% 90%"
     },
     {
       nome: "Bracelete Serena",
       categoria: "Pulseiras",
-      preco: "R$ 25,00",
+      preco: "R$ 30,00",
       novidade: true,
-      imagem: "pulseiras/IMG_20261027_122821316.jpg"
+      imagem: "pulseiras/IMG_20261027_122821316.jpg",
+      foco: "50% 90%"
     },
     {
       nome: "Bracelete Clássico",
       categoria: "Pulseiras",
       preco: "R$ 25,00",
       novidade: true,
-      imagem: "pulseiras/IMG_20261027_122908121.jpg"
+      imagem: "pulseiras/IMG_20261027_122908121.jpg",
+      foco: "50% 90%"
     },
     {
       nome: "Bracelete Lunar",
       categoria: "Pulseiras",
       preco: "R$ 30,00",
       novidade: true,
-      imagem: "pulseiras/IMG_20261027_122742429.jpg"
+      imagem: "pulseiras/IMG_20261027_122742429.jpg",
+      foco: "50% 75%",
+      zoom: 1.2
     },
     {
       nome: "Pulseira Lisa",
