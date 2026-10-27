@@ -356,55 +356,6 @@
 
     // Pulseiras:
     {
-      nome: "Bracelete Estrela Única",
-      categoria: "Pulseiras",
-      preco: "R$ 30,00",
-      novidade: true,
-      imagem: "pulseiras/IMG_20261027_122923765.jpg",
-      foco: "50% 70%"
-    },
-    {
-      nome: "Bracelete Fio de Prata",
-      categoria: "Pulseiras",
-      preco: "R$ 25,00",
-      novidade: true,
-      imagem: "pulseiras/IMG_20261027_122936486.jpg",
-      foco: "50% 40%"
-    },
-    {
-      nome: "Bracelete Argento",
-      categoria: "Pulseiras",
-      preco: "R$ 30,00",
-      novidade: true,
-      imagem: "pulseiras/IMG_20261027_122801238.jpg",
-      foco: "50% 90%"
-    },
-    {
-      nome: "Bracelete Serena",
-      categoria: "Pulseiras",
-      preco: "R$ 30,00",
-      novidade: true,
-      imagem: "pulseiras/IMG_20261027_122821316.jpg",
-      foco: "50% 90%"
-    },
-    {
-      nome: "Bracelete Clássico",
-      categoria: "Pulseiras",
-      preco: "R$ 25,00",
-      novidade: true,
-      imagem: "pulseiras/IMG_20261027_122908121.jpg",
-      foco: "50% 90%"
-    },
-    {
-      nome: "Bracelete Lunar",
-      categoria: "Pulseiras",
-      preco: "R$ 30,00",
-      novidade: true,
-      imagem: "pulseiras/IMG_20261027_122742429.jpg",
-      foco: "50% 75%",
-      zoom: 1.2
-    },
-    {
       nome: "Pulseira Lisa",
       categoria: "Pulseiras",
       preco: "R$ 20,00",
@@ -487,6 +438,59 @@
       novidade: false,
       imagens: ["pulseiras/IMG_8467.JPG", "pulseiras/IMG_8468.JPG"]
     },
+    
+    // Braceletes
+    {
+      nome: "Bracelete Estrela Única",
+      categoria: "Braceletes",
+      preco: "R$ 30,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122923765.jpg",
+      foco: "50% 70%"
+    },
+    {
+      nome: "Bracelete Fio de Prata",
+      categoria: "Braceletes",
+      preco: "R$ 25,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122936486.jpg",
+      foco: "50% 40%"
+    },
+    {
+      nome: "Bracelete Argento",
+      categoria: "Braceletes",
+      preco: "R$ 30,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122801238.jpg",
+      foco: "50% 90%"
+    },
+    {
+      nome: "Bracelete Serena",
+      categoria: "Braceletes",
+      preco: "R$ 30,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122821316.jpg",
+      foco: "50% 90%"
+    },
+    {
+      nome: "Bracelete Clássico",
+      categoria: "Braceletes",
+      preco: "R$ 25,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122908121.jpg",
+      foco: "50% 90%"
+    },
+    {
+      nome: "Bracelete Lunar",
+      categoria: "Braceletes",
+      preco: "R$ 30,00",
+      novidade: true,
+      imagem: "pulseiras/IMG_20261027_122742429.jpg",
+      foco: "50% 75%",
+      zoom: 1.2
+    },
+    
+    
 
   ];
 
