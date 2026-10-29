@@ -361,75 +361,128 @@
       preco: "R$ 20,00",
       novidade: false,
       imagens: [
-        { src: "pulseiras/IMG_8439.JPG", foco: "55% 90%", ajuste: "contain", zoom: 2.3},
-        { src: "pulseiras/IMG_8440.JPG", foco: "60% 90%", ajuste: "contain", zoom: 2.3 }
+        { src: "pulseiras/pulseira-lisa-1.jpg", foco: "50% 50%", ajuste: "contain", zoom: 2.3},
+        { src: "pulseiras/pulseira-lisa-2.jpg", foco: "50% 50%", ajuste: "contain", zoom: 2.3 }
       ]
-      
     },
     {
       nome: "Pulseira Trançada",
       categoria: "Pulseiras",
       preco: "R$ 25,00",
       novidade: false,
-      imagens: ["pulseiras/IMG_8437.JPG", 
-      { src: "pulseiras/IMG_8441.JPG", foco: "60% 90%", ajuste: "contain", zoom: 2.3 }
+      imagens: [
+      { src: "pulseiras/pulsiera-trancada-1.jpg", foco: "50% 50%", zoom: 1.5 },
+      { src: "pulseiras/pulseira-trancada-2.JPG", foco: "50% 52%", zoom: 1.5 }
       ]
-    },
-    {
-      nome: "Pulseira Esferas",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      novidade: false,
-      imagens: ["pulseiras/IMG_8461.JPG", "pulseiras/IMG_8460.JPG"]
-    },
-    {
-      nome: "Pulseira Cordame",
-      categoria: "Pulseiras",
-      preco: "R$ 25,00",
-      novidade: false,
-      imagens: ["pulseiras/IMG_8442.JPG", "pulseiras/IMG_8443.JPG"]
-    },
-    {
-      nome: "Pulseira Elo Quadrado",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      novidade: false,
-      imagens: ["pulseiras/IMG_8446.JPG", "pulseiras/IMG_8447.JPG"]
-    },
-    {
-      nome: "Pulseira Fio Fino",
-      categoria: "Pulseiras",
-      preco: "R$ 20,00",
-      novidade: false,
-      imagens: ["pulseiras/IMG_8449.JPG", "pulseiras/IMG_8448.JPG"]
     },
     {
       nome: "Pulseira Trançada Fina",
       categoria: "Pulseiras",
       preco: "R$ 20,00",
       novidade: false,
-      imagens: ["pulseiras/IMG_8455.JPG", "pulseiras/IMG_8454.JPG"]
+      imagens: [
+      { src: "pulseiras/pulseira-trancada-fina-1.JPG", foco: "50% 50%", zoom: 1.5 },
+      { src: "pulseiras/pulseira-trancada-fina-2.JPG", foco: "50% 52%", zoom: 1.5 } ]
+    },
+    {
+      nome: "Pulseira Esferas",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagens: [
+      { src: "pulseiras/bolinhas-1.JPG", foco: "50% 50%", zoom: 1.5 },
+      { src: "pulseiras/bolinhas-2.JPG", foco: "50% 50%", zoom: 1.5 }
+      ]
+    },
+    {
+      nome: "Pulseira Cordame",
+      categoria: "Pulseiras",
+      preco: "R$ 25,00",
+      novidade: false,
+      imagens: [
+      { src: "pulseiras/cordame-1.JPG", foco: "50% 50%", zoom: 1.5 },
+      { src: "pulseiras/cordame-2.JPG", foco: "50% 50%", zoom: 1.5 }
+      ]
+    },
+    {
+      nome: "Pulseira Elo Quadrado",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagens: [
+      { src: "pulseiras/elo-quadrado-1.JPG", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/elo-quadrado-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      ]
+    },
+    {
+      nome: "Pulseira Elo Quadrado Fino",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagens: [
+      { src: "pulseiras/elo-quadrado-fino-1.JPG", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/elo-quadrado-fino-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      ]
+    },
+    {
+      nome: "Pulseira Fio Fino",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagens: [
+      { src: "pulseiras/fio-fino-1.JPG", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/fio-fino-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      ]
+    },
+    {
+      nome: "Pulseira Fio Extra Fino",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagens: [
+      { src: "pulseiras/extra-fino-1.JPG", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/extra-fino-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      ]
     },
     {
       nome: "Pulseira Elo Largo",
       categoria: "Pulseiras",
       preco: "R$ 20,00",
       novidade: false,
-      imagens: ["pulseiras/IMG_8457.JPG", "pulseiras/IMG_8456.JPG"]
+      imagens: [
+      { src: "pulseiras/elo-largo-1.JPG", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/elo-largo-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      ]
+    },
+    {
+      nome: "Pulseira Elo Fino",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagens: [
+      { src: "pulseiras/elo-fino-1.JPG", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/elo-fino-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      ]
     },
     {
       nome: "Pulseira Pérolas de Prata",
       categoria: "Pulseiras",
       preco: "R$ 20,00",
       novidade: false,
-      imagens: ["pulseiras/IMG_8458.JPG", "pulseiras/IMG_8459.JPG"]
+      imagens: [
+      { src: "pulseiras/perolas-prata-1.JPG", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/perolas-prata-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      ]
     },
     {
       nome: "Pulseira Elo Largo",
       categoria: "Pulseiras",
       preco: "R$ 20,00",
       novidade: false,
-      imagens: ["pulseiras/IMG_8463.JPG", "pulseiras/IMG_8462.JPG"]
+      imagens: [
+      { src: "pulseiras/elo-grosso-1.JPG", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/elo-grosso-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      ]
     },
     {
       nome: "Pulseira Ítalica",
