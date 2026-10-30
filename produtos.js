@@ -240,6 +240,110 @@
 
     // Anéis:
     {
+      nome: "Anel Palhaço",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "aneis/palhaco.jpg"
+    },
+    {
+      nome: "Anel Borboleta Caveira",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      novidade: true,
+      imagem: "aneis/caveira-borboleta.jpg",
+      foco: "50% 66%",
+      zoom: 1.1
+    },
+    {
+      nome: "Anel Baralho",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "aneis/baralho.jpg",
+      foco: "50% 50%",
+      zoom: 1.5
+    },
+    {
+      nome: "Anel Coração Partido",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "aneis/coracao-partido.jpg",
+      zoom: 2.0
+    },
+    {
+      nome: "Anel Cerebro vs Coração",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "aneis/cerebro-coracao.jpg",
+      foco: "60% 60%",
+      zoom: 1.3
+    },
+    {
+      nome: "Anel Espinhos",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "aneis/espinhos.jpg",
+      foco: "50% 40%",
+      zoom: 1.5
+    },
+    {
+      nome: "Anel Bola 8",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "aneis/bola-8.jpg",
+      foco: "50% 45%"
+    },
+    {
+      nome: "Anel Mão Esquelética",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      novidade: true,
+      imagem: "aneis/mao-esqueleto.jpg",
+      foco: "50% 45%",
+      zoom: 1.4
+    },
+    {
+      nome: "Anel Máscara Teatral",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      novidade: true,
+      imagem: "aneis/mascara-teatral.jpg",
+      foco: "50% 45%",
+      zoom: 1.7
+    },
+    {
+      nome: "Anel Corrente",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      novidade: false,
+      imagem: "aneis/corrente.jpg",
+      foco: "50% 38%",
+      zoom: 1.7
+    },
+    {
+      nome: "Anel Elo Fino",
+      categoria: "Anéis",
+      preco: "R$ 15,00",
+      novidade: false,
+      imagem: "aneis/elo-fino.jpg",
+      foco: "50% 43%",
+      zoom: 1.9
+    },
+    {
+      nome: "Anel Elo Largo",
+      categoria: "Anéis",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "aneis/elo-largo.jpg",
+      foco: "50% 38%",
+      zoom: 1.7
+    },
+    {
       nome: "Anel Farpado",
       categoria: "Anéis",
       preco: "R$ 20,00",
@@ -372,7 +476,7 @@
       novidade: false,
       imagens: [
       { src: "pulseiras/pulsiera-trancada-1.jpg", foco: "50% 50%", zoom: 1.5 },
-      { src: "pulseiras/pulseira-trancada-2.JPG", foco: "50% 52%", zoom: 1.5 }
+      { src: "pulseiras/pulseira-trancada-2.jpg", foco: "50% 52%", zoom: 1.5 }
       ]
     },
     {
@@ -381,8 +485,8 @@
       preco: "R$ 20,00",
       novidade: false,
       imagens: [
-      { src: "pulseiras/pulseira-trancada-fina-1.JPG", foco: "50% 50%", zoom: 1.5 },
-      { src: "pulseiras/pulseira-trancada-fina-2.JPG", foco: "50% 52%", zoom: 1.5 } ]
+      { src: "pulseiras/pulseira-trancada-fina-1.jpg", foco: "50% 50%", zoom: 1.5 },
+      { src: "pulseiras/pulseira-trancada-fina-2.jpg", foco: "50% 52%", zoom: 1.5 } ]
     },
     {
       nome: "Pulseira Esferas",
@@ -390,8 +494,8 @@
       preco: "R$ 20,00",
       novidade: false,
       imagens: [
-      { src: "pulseiras/bolinhas-1.JPG", foco: "50% 50%", zoom: 1.5 },
-      { src: "pulseiras/bolinhas-2.JPG", foco: "50% 50%", zoom: 1.5 }
+      { src: "pulseiras/bolinhas-1.jpg", foco: "50% 50%", zoom: 1.5 },
+      { src: "pulseiras/bolinhas-2.jpg", foco: "50% 50%", zoom: 1.5 }
       ]
     },
     {
@@ -400,8 +504,8 @@
       preco: "R$ 25,00",
       novidade: false,
       imagens: [
-      { src: "pulseiras/cordame-1.JPG", foco: "50% 50%", zoom: 1.5 },
-      { src: "pulseiras/cordame-2.JPG", foco: "50% 50%", zoom: 1.5 }
+      { src: "pulseiras/cordame-1.jpg", foco: "50% 50%", zoom: 1.5 },
+      { src: "pulseiras/cordame-2.jpg", foco: "50% 50%", zoom: 1.5 }
       ]
     },
     {
@@ -410,8 +514,8 @@
       preco: "R$ 20,00",
       novidade: false,
       imagens: [
-      { src: "pulseiras/elo-quadrado-1.JPG", foco: "50% 50%", zoom: 1.4 },
-      { src: "pulseiras/elo-quadrado-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      { src: "pulseiras/elo-quadrado-1.jpg", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/elo-quadrado-2.jpg", foco: "50% 50%", zoom: 1.4 }
       ]
     },
     {
@@ -420,8 +524,8 @@
       preco: "R$ 20,00",
       novidade: false,
       imagens: [
-      { src: "pulseiras/elo-quadrado-fino-1.JPG", foco: "50% 50%", zoom: 1.4 },
-      { src: "pulseiras/elo-quadrado-fino-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      { src: "pulseiras/elo-quadrado-fino-1.jpg", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/elo-quadrado-fino-2.jpg", foco: "50% 50%", zoom: 1.4 }
       ]
     },
     {
@@ -430,8 +534,8 @@
       preco: "R$ 20,00",
       novidade: false,
       imagens: [
-      { src: "pulseiras/fio-fino-1.JPG", foco: "50% 50%", zoom: 1.4 },
-      { src: "pulseiras/fio-fino-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      { src: "pulseiras/fio-fino-1.jpg", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/fio-fino-2.jpg", foco: "50% 50%", zoom: 1.4 }
       ]
     },
     {
@@ -440,8 +544,8 @@
       preco: "R$ 20,00",
       novidade: false,
       imagens: [
-      { src: "pulseiras/extra-fino-1.JPG", foco: "50% 50%", zoom: 1.4 },
-      { src: "pulseiras/extra-fino-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      { src: "pulseiras/extra-fino-1.jpg", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/extra-fino-2.jpg", foco: "50% 50%", zoom: 1.4 }
       ]
     },
     {
@@ -450,8 +554,8 @@
       preco: "R$ 20,00",
       novidade: false,
       imagens: [
-      { src: "pulseiras/elo-largo-1.JPG", foco: "50% 50%", zoom: 1.4 },
-      { src: "pulseiras/elo-largo-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      { src: "pulseiras/elo-largo-1.jpg", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/elo-largo-2.jpg", foco: "50% 50%", zoom: 1.4 }
       ]
     },
     {
@@ -460,8 +564,8 @@
       preco: "R$ 20,00",
       novidade: false,
       imagens: [
-      { src: "pulseiras/elo-fino-1.JPG", foco: "50% 50%", zoom: 1.4 },
-      { src: "pulseiras/elo-fino-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      { src: "pulseiras/elo-fino-1.jpg", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/elo-fino-2.jpg", foco: "50% 50%", zoom: 1.4 }
       ]
     },
     {
@@ -470,8 +574,8 @@
       preco: "R$ 20,00",
       novidade: false,
       imagens: [
-      { src: "pulseiras/perolas-prata-1.JPG", foco: "50% 50%", zoom: 1.4 },
-      { src: "pulseiras/perolas-prata-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      { src: "pulseiras/perolas-prata-1.jpg", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/perolas-prata-2.jpg", foco: "50% 50%", zoom: 1.4 }
       ]
     },
     {
@@ -480,8 +584,8 @@
       preco: "R$ 20,00",
       novidade: false,
       imagens: [
-      { src: "pulseiras/elo-grosso-1.JPG", foco: "50% 50%", zoom: 1.4 },
-      { src: "pulseiras/elo-grosso-2.JPG", foco: "50% 50%", zoom: 1.4 }
+      { src: "pulseiras/elo-grosso-1.jpg", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/elo-grosso-2.jpg", foco: "50% 50%", zoom: 1.4 }
       ]
     },
     {
@@ -489,7 +593,20 @@
       categoria: "Pulseiras",
       preco: "R$ 20,00",
       novidade: false,
-      imagens: ["pulseiras/IMG_8467.JPG", "pulseiras/IMG_8468.JPG"]
+      imagens: [
+      { src: "pulseiras/italica-1.jpg", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/italica-2.jpg", foco: "50% 50%", zoom: 1.4 }
+      ]
+    },
+    {
+      nome: "Pulseira Argola",
+      categoria: "Pulseiras",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagens: [
+      { src: "pulseiras/argola-1.jpg", foco: "50% 50%", zoom: 1.4 },
+      { src: "pulseiras/argola-2.jpg", foco: "50% 50%", zoom: 1.4 }
+      ]
     },
     
     // Braceletes
