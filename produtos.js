@@ -192,24 +192,9 @@
       novidade: false,
       imagem: "brincos/IMG_8483.JPG"
     },
-    {
-      nome: "Brinco Asas de Morcego",
-      categoria: "Brincos",
-      preco: "R$ 20,00",
-      novidade: false,
-      imagem: "brincos/IMG_8473.JPG",
-      foco: "45% 50%",          // opcional
-      ajuste: "scale-down",    // opcional
-      zoom: 1.8,                 // opcional (1 = normal; ex: 1.3 para ampliar)
-      fundo: "#000"            // opcional (cor das margens sobrando)
-    },
-    {
-      nome: "Brinco Aranha de Rubi",
-      categoria: "Brincos",
-      preco: "R$ 20,00",
-      novidade: false,
-      imagem: "brincos/IMG_8479.JPG"
-    },
+    // { nome: "Brinco Asas de Morcego", categoria: "Brincos",preco: "R$ 20,00",novidade: false,imagem: "brincos/IMG_8473.JPG",
+    //  foco: "45% 50%", ajuste: "scale-down", zoom: 1.8,fundo: "#000"},
+    // {nome: "Brinco Aranha de Rubi",categoria: "Brincos", preco: "R$ 20,00", novidade: false, imagem: "brincos/IMG_8479.JPG"},
     {
       nome: "Brinco Coração de Ônix",
       categoria: "Brincos",
@@ -255,23 +240,11 @@
       foco: "50% 66%",
       zoom: 1.1
     },
-    {
-      nome: "Anel Baralho",
-      categoria: "Anéis",
-      preco: "R$ 20,00",
-      novidade: false,
-      imagem: "aneis/baralho.jpg",
-      foco: "50% 50%",
-      zoom: 1.5
-    },
-    {
-      nome: "Anel Coração Partido",
-      categoria: "Anéis",
-      preco: "R$ 20,00",
-      novidade: false,
-      imagem: "aneis/coracao-partido.jpg",
-      zoom: 2.0
-    },
+    
+    // {nome: "Anel Baralho",categoria: "Anéis",preco: "R$ 20,00",novidade: false,imagem: "aneis/baralho.jpg",foco: "50% 50%",zoom: 1.5},
+    
+    // { nome: "Anel Coração Partido", categoria: "Anéis",preco: "R$ 20,00",novidade: false,imagem: "aneis/coracao-partido.jpg",zoom: 2.0},
+    
     {
       nome: "Anel Cerebro vs Coração",
       categoria: "Anéis",
@@ -290,23 +263,11 @@
       foco: "50% 40%",
       zoom: 1.5
     },
-    {
-      nome: "Anel Bola 8",
-      categoria: "Anéis",
-      preco: "R$ 20,00",
-      novidade: false,
-      imagem: "aneis/bola-8.jpg",
-      foco: "50% 45%"
-    },
-    {
-      nome: "Anel Mão Esquelética",
-      categoria: "Anéis",
-      preco: "R$ 20,00",
-      novidade: true,
-      imagem: "aneis/mao-esqueleto.jpg",
-      foco: "50% 45%",
-      zoom: 1.4
-    },
+    
+    // {nome: "Anel Bola 8",categoria: "Anéis",preco: "R$ 20,00",novidade: false, imagem: "aneis/bola-8.jpg", foco: "50% 45%"},
+    
+    // { nome: "Anel Mão Esquelética",categoria: "Anéis", preco: "R$ 20,00", novidade: true, imagem: "aneis/mao-esqueleto.jpg", foco: "50% 45%", zoom: 1.4},
+    
     {
       nome: "Anel Máscara Teatral",
       categoria: "Anéis",
@@ -358,9 +319,7 @@
    
   {nome: "Anel Morcego", categoria: "Anéis", preco: "R$ 17,00", novidade: false,
   imagem: "aneis/IMG_8308.JPG", foco: "44% 55%", zoom: 2.0 },
-   
-  //  {nome: "Anel Bola Oito", categoria: "Anéis", preco: "R$ 20,00", novidade: false, imagem: "aneis/IMG_8329.JPG"},
-    
+  
     {
       nome: "Anel Elo Largo",
       categoria: "Anéis",
@@ -368,8 +327,9 @@
       novidade: false,
       imagem: "aneis/IMG_8330.JPG"
     },
-   // {nome: "Anel Monarca Largo", categoria: "Anéis", preco: "R$ 17,00",
-   //  novidade: false, imagem: "aneis/IMG_8333.JPG"},
+    
+   // {nome: "Anel Monarca Largo", categoria: "Anéis", preco: "R$ 17,00", novidade: false, imagem: "aneis/IMG_8333.JPG"},
+   
    // {nome: "Anel Elo", categoria: "Anéis", preco: "R$ 15,00", novidade: false, imagem: "aneis/IMG_8336.JPG"},
     
    // {nome: "Anel Serpente", categoria: "Anéis", preco: "R$ 17,00", novidade: false, imagem: "aneis/IMG_8343.JPG"},
@@ -381,13 +341,9 @@
       novidade: false,
       imagem: "aneis/IMG_8349.JPG"
     },
-    {
-      nome: "Anel Coroa Negra",
-      categoria: "Anéis",
-      preco: "R$ 15,00",
-      novidade: false,
-      imagem: "aneis/IMG_8351.JPG"
-    },
+    
+    // {nome: "Anel Coroa Negra",categoria: "Anéis",preco: "R$ 15,00",novidade: false,imagem: "aneis/IMG_8351.JPG"},
+    
     {
       nome: "Anel Caveira",
       categoria: "Anéis",
@@ -395,13 +351,9 @@
       novidade: false,
       imagem: "aneis/IMG_8355.JPG"
     },
-    {
-      nome: "Anel Ônix",
-      categoria: "Anéis",
-      preco: "R$ 15,00",
-      novidade: false,
-      imagem: "aneis/IMG_8356.JPG"
-    },
+    
+    // {nome: "Anel Ônix", categoria: "Anéis", preco: "R$ 15,00", novidade: false, imagem: "aneis/IMG_8356.JPG"},
+    
     {
       nome: "Anel Angel",
       categoria: "Anéis",
@@ -634,14 +586,9 @@
       imagem: "pulseiras/IMG_20261027_122801238.jpg",
       foco: "50% 90%"
     },
-    {
-      nome: "Bracelete Serena",
-      categoria: "Braceletes",
-      preco: "R$ 30,00",
-      novidade: true,
-      imagem: "pulseiras/IMG_20261027_122821316.jpg",
-      foco: "50% 90%"
-    },
+   
+    // {nome: "Bracelete Serena", categoria: "Braceletes", preco: "R$ 30,00", novidade: true, imagem: "pulseiras/IMG_20261027_122821316.jpg", foco: "50% 90%"},
+    
     {
       nome: "Bracelete Clássico",
       categoria: "Braceletes",
