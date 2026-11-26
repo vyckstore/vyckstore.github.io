@@ -66,6 +66,51 @@
       zoom: 1.3
     },
     {
+      nome: "Colar Choker Estrela",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      novidade: true,
+      imagem: "colares/choker-estrela.jpg",
+      foco: "50% 30%",
+      zoom: 1.3
+    },
+    {
+      nome: "Colar Cruz de Prata",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      novidade: false,
+      imagem: "colares/cruz-nova.jpg",
+      foco: "50% 50%",
+      zoom: 1.3
+    },
+    {
+      nome: "Colar Espada Coração",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      novidade: false,
+      imagem: "colares/espada-coracao.jpg",
+      foco: "50% 40%",
+      zoom: 1.1
+    },
+    {
+      nome: "Colar Mariposa",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      novidade: false,
+      imagem: "colares/mariposa-caveira.jpg",
+      foco: "50% 40%",
+      zoom: 1.4
+    },
+    {
+      nome: "Colar Coração Ônix",
+      categoria: "Colares",
+      preco: "R$ 30,00",
+      novidade: false,
+      imagem: "colares/coracao-preto.jpg",
+      foco: "50% 30%",
+      zoom: 1.2
+    },
+    {
       nome: "Colar Borboleta Cravejada",
       categoria: "Colares",
       preco: "R$ 35,00",
@@ -156,23 +201,103 @@
 
     // Brincos:
     {
+      nome: "Brinco Cruz de Rubi",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      novidade: true,
+      imagem: "brincos/cruz.jpg",
+      foco: "50% 50%", // "43% 18%",
+      zoom: 1.3
+    },
+    {
+      nome: "Brinco Cruz com Pedra Rubi",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "brincos/cruz-de-rubi.jpg",
+      foco: "40% 70%", // "43% 18%",
+      zoom: 1.2
+    },
+    {
+      nome: "Brinco Aranha com Pedra Rubi",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "brincos/rubi-aranha.jpg",
+      foco: "40% 50%", // "43% 18%",
+      zoom: 1.3
+    },
+    {
+      nome: "Brinco Espada",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "brincos/espada.jpg",
+      foco: "40% 50%", // "43% 18%",
+      zoom: 1.3
+    },
+    {
+      nome: "Brinco Caveira Rubi",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "brincos/caveira-rubi.jpg",
+      foco: "50% 60%", // "43% 18%",
+      zoom: 1.1
+    },
+    {
+      nome: "Brinco Caveira Prata",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "brincos/caveira-prata.jpg",
+      foco: "50% 42%", // "43% 18%",
+      zoom: 1.5
+    },
+    {
+      nome: "Brinco Estrela Dupla",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      novidade: true,
+      imagem: "brincos/estrela-dupla.jpg",
+      foco: "50% 50%", // "43% 18%",
+      zoom: 1.5
+    },
+    {
+      nome: "Brinco Aranha Rubi",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      novidade: true,
+      imagem: "brincos/aranha-rubi.jpg",
+      foco: "40% 45%", // "43% 18%",
+      zoom: 1.3
+    },
+    {
+      nome: "Brinco Asa de Morcego",
+      categoria: "Brincos",
+      preco: "R$ 20,00",
+      novidade: false,
+      imagem: "brincos/asa-de-morcego.jpg",
+      foco: "40% 35%", // "43% 18%",
+      zoom: 1.5
+    },
+    {
       nome: "Brinco Farpado",
       categoria: "Brincos",
       preco: "R$ 20,00",
       novidade: false,
-      imagem: "brincos/brinco-arame.jpg",
-      foco: "43% 18%",
-      zoom: 1.4
-      
+      imagem: "brincos/arame-farpado.jpg",
+      foco: "50% 40%", // "43% 18%",
+      zoom: 1.1
     },
     {
       nome: "Brinco Aranha",
       categoria: "Brincos",
       preco: "R$ 20,00",
       novidade: false,
-      imagem: "brincos/brinco-aranha.jpg",
+      imagem: "brincos/aranhas.jpg",
       foco: "43% 20%",
-      zoom: 1.3
+      zoom: 1.2
       
     },
     {
@@ -180,21 +305,22 @@
       categoria: "Brincos",
       preco: "R$ 20,00",
       novidade: false,
-      imagem: "brincos/brinco-coracao.jpg",
-      foco: "30% 23%",          // opcional
-      zoom: 1.4,                 // opcional (1 = normal; ex: 1.3 para ampliar)
-      fundo: "#000" 
+      imagem: "brincos/coracao.JPG",
+      foco: "35% 50%",          // opcional
+      zoom: 1.5
     },
     {
       nome: "Brinco Caveira",
       categoria: "Brincos",
       preco: "R$ 20,00",
       novidade: false,
-      imagem: "brincos/IMG_8483.JPG"
+      imagem: "brincos/caveira.JPG",
+      foco: "50% 30%",          // opcional
+      zoom: 1.5,                 // opcional (1 = normal; ex: 1.3 para ampliar)
+      fundo: "#000"
     },
     // { nome: "Brinco Asas de Morcego", categoria: "Brincos",preco: "R$ 20,00",novidade: false,imagem: "brincos/IMG_8473.JPG",
     //  foco: "45% 50%", ajuste: "scale-down", zoom: 1.8,fundo: "#000"},
-    // {nome: "Brinco Aranha de Rubi",categoria: "Brincos", preco: "R$ 20,00", novidade: false, imagem: "brincos/IMG_8479.JPG"},
     {
       nome: "Brinco Coração de Ônix",
       categoria: "Brincos",
@@ -207,16 +333,16 @@
       categoria: "Brincos",
       preco: "R$ 12,00",
       novidade: false,
-      imagem: "brincos/IMG_8486.JPG"
+      imagem: "brincos/perolas.JPG"
     },
     {
       nome: "Brinco Cubo",
       categoria: "Brincos",
       preco: "R$ 10,00",
       novidade: false,
-      imagem: "brincos/IMG_8490.JPG",
+      imagem: "brincos/cubo.JPG",
       foco: "40% 50%",          // opcional
-      zoom: 1.8,                 // opcional (1 = normal; ex: 1.3 para ampliar)
+      zoom: 1.3,                 // opcional (1 = normal; ex: 1.3 para ampliar)
       fundo: "#000" 
     },
     // {nome: "Brinco Slim", categoria: "Brincos", preco: "R$ 10,00", novidade: false, imagem: "brincos/IMG_8491.JPG", foco: "44% 50%", ajuste: "scale-down", zoom: 1.8, fundo: "#000"},
@@ -574,7 +700,7 @@
       nome: "Bracelete Fio de Prata",
       categoria: "Braceletes",
       preco: "R$ 25,00",
-      novidade: true,
+      novidade: false,
       imagem: "pulseiras/IMG_20261027_122936486.jpg",
       foco: "50% 40%"
     },
@@ -593,7 +719,7 @@
       nome: "Bracelete Clássico",
       categoria: "Braceletes",
       preco: "R$ 25,00",
-      novidade: true,
+      novidade: false,
       imagem: "pulseiras/IMG_20261027_122908121.jpg",
       foco: "50% 90%"
     },
@@ -601,13 +727,20 @@
       nome: "Bracelete Lunar",
       categoria: "Braceletes",
       preco: "R$ 30,00",
-      novidade: true,
+      novidade: false,
       imagem: "pulseiras/IMG_20261027_122742429.jpg",
       foco: "50% 75%",
       zoom: 1.2
     },
     
-    
+    //Conjunto
+    {
+      nome: "Conjunto Ponto de Luz 925",
+      categoria: "Conjuntos",
+      preco: "R$ 150,00",
+      novidade: false,
+      imagem: "conjuntos/conjunto.JPG"
+    },
 
   ];
 
