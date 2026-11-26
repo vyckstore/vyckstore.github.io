@@ -739,7 +739,7 @@
       categoria: "Conjuntos",
       preco: "R$ 150,00",
       novidade: false,
-      imagem: "conjuntos/conjunto.JPG"
+      imagem: "conjuntos/conjunto.jpg"
     },
 
   ];
